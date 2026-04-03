@@ -1,0 +1,6 @@
+#!/bin/sh
+case "${__ADAPTER_TEST_MODE:-success}" in
+  success) echo '{"result":"Hello from cursor","chatId":"cursor-chat-789"}'; exit 0;;
+  error) echo "Error: cursor agent failed" >&2; exit 1;;
+  timeout) sleep 60;;
+esac

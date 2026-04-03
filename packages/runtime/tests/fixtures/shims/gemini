@@ -1,0 +1,6 @@
+#!/bin/sh
+case "${__ADAPTER_TEST_MODE:-success}" in
+  success) echo '{"response":"Hello from gemini","sessionId":"gemini-session-101"}'; exit 0;;
+  error) echo "Error: gemini failed" >&2; exit 1;;
+  timeout) sleep 60;;
+esac
