@@ -42,7 +42,7 @@
 ### Adapter Runtime
 
 - [ ] **ADPT-01**: Runtime package has zero imports from Paperclip server, database, or host-plugin SDK — enforced by a package-boundary lint rule or import check in CI
-- [ ] **ADPT-02**: Runtime package exports five plugin-owned hook interfaces: `buildAgentEnv`, `resolveInstructions`, `loadSession`, `saveSession`, `emitLog`
+- [x] **ADPT-02**: Runtime package exports five plugin-owned hook interfaces: `buildAgentEnv`, `resolveInstructions`, `loadSession`, `saveSession`, `emitLog`
 - [ ] **ADPT-03**: `claude_local` adapter invokes the `claude` CLI, encodes/decodes session using Claude's session wire format, and parses its stdout output
 - [ ] **ADPT-04**: `codex_local` adapter invokes the `codex` CLI, encodes/decodes session using Codex's session wire format, and parses its stdout output
 - [ ] **ADPT-05**: `cursor` adapter invokes the Cursor CLI, encodes/decodes session using Cursor's session wire format, and parses its stdout output
@@ -54,10 +54,10 @@
 
 ### Session Persistence
 
-- [ ] **SESS-01**: Companion script creates a session file at `CLAUDE_PLUGIN_DATA/state/<sha256(workspaceRoot)>/sessions/<agent-id>` after the first successful task run
-- [ ] **SESS-02**: Companion script loads the existing session file and passes it to the adapter codec when `--resume` flag is set and a session file exists
-- [ ] **SESS-03**: Companion script deletes the session file for `(workspace, agent-id)` when `--fresh` flag is set, then runs the task without a session
-- [ ] **SESS-04**: Sessions for different workspace roots are stored in separate hash-partitioned directories and cannot be accessed cross-workspace
+- [x] **SESS-01**: Companion script creates a session file at `CLAUDE_PLUGIN_DATA/state/<sha256(workspaceRoot)>/sessions/<agent-id>` after the first successful task run
+- [x] **SESS-02**: Companion script loads the existing session file and passes it to the adapter codec when `--resume` flag is set and a session file exists
+- [x] **SESS-03**: Companion script deletes the session file for `(workspace, agent-id)` when `--fresh` flag is set, then runs the task without a session
+- [x] **SESS-04**: Sessions for different workspace roots are stored in separate hash-partitioned directories and cannot be accessed cross-workspace
 
 ### Background Jobs
 
@@ -85,9 +85,9 @@
 
 ### Logging
 
-- [ ] **LOG-01**: Companion script writes structured log entries (timestamp, level, job-id, message) to `CLAUDE_PLUGIN_DATA/state/<hash>/logs/<job-id>.log` for each background job
-- [ ] **LOG-02**: Adapter execution start, completion, and failure events are logged with timing information
-- [ ] **LOG-03**: `emitLog` hook is called for each log entry, allowing plugin consumers to intercept logs without modifying the runtime package
+- [x] **LOG-01**: Companion script writes structured log entries (timestamp, level, job-id, message) to `CLAUDE_PLUGIN_DATA/state/<hash>/logs/<job-id>.log` for each background job
+- [x] **LOG-02**: Adapter execution start, completion, and failure events are logged with timing information
+- [x] **LOG-03**: `emitLog` hook is called for each log entry, allowing plugin consumers to intercept logs without modifying the runtime package
 
 ### Testing
 
@@ -172,7 +172,7 @@ Which phases cover which requirements. Populated during roadmap creation.
 | CMD-12 | Phase 3 | Pending |
 | CMD-13 | Phase 3 | Pending |
 | ADPT-01 | Phase 1 | Pending |
-| ADPT-02 | Phase 2 | Pending |
+| ADPT-02 | Phase 2 | Complete |
 | ADPT-03 | Phase 2 | Pending |
 | ADPT-04 | Phase 2 | Pending |
 | ADPT-05 | Phase 2 | Pending |
@@ -181,10 +181,10 @@ Which phases cover which requirements. Populated during roadmap creation.
 | ADPT-08 | Phase 2 | Pending |
 | ADPT-09 | Phase 2 | Complete |
 | ADPT-10 | Phase 2 | Complete |
-| SESS-01 | Phase 2 | Pending |
-| SESS-02 | Phase 2 | Pending |
-| SESS-03 | Phase 2 | Pending |
-| SESS-04 | Phase 2 | Pending |
+| SESS-01 | Phase 2 | Complete |
+| SESS-02 | Phase 2 | Complete |
+| SESS-03 | Phase 2 | Complete |
+| SESS-04 | Phase 2 | Complete |
 | JOB-01 | Phase 3 | Pending |
 | JOB-02 | Phase 3 | Pending |
 | JOB-03 | Phase 3 | Pending |
@@ -200,9 +200,9 @@ Which phases cover which requirements. Populated during roadmap creation.
 | ERR-03 | Phase 2 | Pending |
 | ERR-04 | Phase 3 | Pending |
 | ERR-05 | Phase 2 | Complete |
-| LOG-01 | Phase 2 | Pending |
-| LOG-02 | Phase 2 | Pending |
-| LOG-03 | Phase 2 | Pending |
+| LOG-01 | Phase 2 | Complete |
+| LOG-02 | Phase 2 | Complete |
+| LOG-03 | Phase 2 | Complete |
 | TEST-01 | Phase 2 | Complete |
 | TEST-02 | Phase 2 | Pending |
 | TEST-03 | Phase 3 | Pending |

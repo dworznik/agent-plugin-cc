@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-04-03T22:14:12.315Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-04-03T22:25:20.797Z"
 last_activity: 2026-04-03
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 8
-  completed_plans: 5
+  completed_plans: 6
   percent: 0
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-04)
 ## Current Position
 
 Phase: 02 (runtime-core) — EXECUTING
-Plan: 3 of 5
+Plan: 4 of 5
 Status: Ready to execute
 Last activity: 2026-04-03
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-foundation P03 | 10 | 2 tasks | 4 files |
 | Phase 02-runtime-core P00 | 5 | 1 tasks | 5 files |
 | Phase 02-runtime-core P01 | 5 | 2 tasks | 10 files |
+| Phase 02-runtime-core P02 | 4 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,9 @@ Recent decisions affecting current work:
 - [Phase 02-runtime-core]: ConfigValidationError carries fieldPath property for human-readable Zod error reporting at the failing path
 - [Phase 02-runtime-core]: spawnWithTimeout creates its own AbortController per call; external signal chains into the internal AC
 - [Phase 02-runtime-core]: parseJSON and parseJSONL use try/catch internally and never surface exceptions to callers
+- [Phase 02-runtime-core]: loadSession accepts optional warn callback so callers control warning output; defaultHooks passes console.warn; tests pass a spy
+- [Phase 02-runtime-core]: Logger durationMs only on info() — timing is for adapter execution events per LOG-02; keeps interface minimal
+- [Phase 02-runtime-core]: defaultHooks.buildAgentEnv returns same baseEnv reference (not copy) — hooks that extend env create a new object
 
 ### Pending Todos
 
@@ -88,6 +92,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-03T22:14:12.310Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-04-03T22:25:20.794Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None
