@@ -18,7 +18,7 @@ created: 2026-04-04
 | Property | Value |
 |----------|-------|
 | **Framework** | vitest 4.1.2 |
-| **Config file** | `packages/runtime/vitest.config.ts` (Wave 0 — needs creation) |
+| **Config file** | `packages/runtime/vitest.config.ts` (Plan 02-00 creates this) |
 | **Quick run command** | `npm test --workspace packages/runtime` |
 | **Full suite command** | `npm test` |
 | **Estimated runtime** | ~10 seconds |
@@ -36,40 +36,26 @@ created: 2026-04-04
 
 ## Per-Task Verification Map
 
-| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 02-01-01 | 01 | 1 | CONF-01 | unit | `npm test --workspace packages/runtime -- --testPathPattern config/schema` | No — W0 | pending |
-| 02-01-02 | 01 | 1 | CONF-02 | unit | `npm test --workspace packages/runtime -- --testPathPattern config/loader` | No — W0 | pending |
-| 02-01-03 | 01 | 1 | CONF-03 | unit | (same as CONF-01) | No — W0 | pending |
-| 02-01-04 | 01 | 1 | CONF-04 | unit | (same as CONF-02) | No — W0 | pending |
-| 02-02-01 | 02 | 1 | ADPT-02 | unit | `npm test --workspace packages/runtime -- --testPathPattern hooks` | No — W0 | pending |
-| 02-02-02 | 02 | 1 | ADPT-09 | unit | `npm test --workspace packages/runtime -- --testPathPattern process/runner` | No — W0 | pending |
-| 02-02-03 | 02 | 1 | ADPT-10 | unit | `npm test --workspace packages/runtime -- --testPathPattern process/parse` | No — W0 | pending |
-| 02-03-01 | 03 | 2 | ADPT-03 | smoke | `npm test --workspace packages/runtime -- --testPathPattern adapters/claude` | No — W0 | pending |
-| 02-03-02 | 03 | 2 | ADPT-04 | smoke | `npm test --workspace packages/runtime -- --testPathPattern adapters/codex` | No — W0 | pending |
-| 02-03-03 | 03 | 2 | ADPT-05 | smoke | `npm test --workspace packages/runtime -- --testPathPattern adapters/cursor` | No — W0 | pending |
-| 02-03-04 | 03 | 2 | ADPT-06 | smoke | `npm test --workspace packages/runtime -- --testPathPattern adapters/gemini` | No — W0 | pending |
-| 02-03-05 | 03 | 2 | ADPT-07 | smoke | `npm test --workspace packages/runtime -- --testPathPattern adapters/opencode` | No — W0 | pending |
-| 02-03-06 | 03 | 2 | ADPT-08 | smoke | `npm test --workspace packages/runtime -- --testPathPattern adapters/pi` | No — W0 | pending |
-| 02-04-01 | 04 | 2 | SESS-01 | unit | `npm test --workspace packages/runtime -- --testPathPattern session/store` | No — W0 | pending |
-| 02-04-02 | 04 | 2 | SESS-02 | unit | (same as SESS-01) | No — W0 | pending |
-| 02-04-03 | 04 | 2 | SESS-03 | unit | (same as SESS-01) | No — W0 | pending |
-| 02-04-04 | 04 | 2 | SESS-04 | unit | (same as SESS-01) | No — W0 | pending |
-| 02-04-05 | 04 | 2 | ERR-05 | unit | (same as SESS-01 — env stub) | No — W0 | pending |
-| 02-05-01 | 05 | 2 | LOG-01 | unit | `npm test --workspace packages/runtime -- --testPathPattern logging` | No — W0 | pending |
-| 02-05-02 | 05 | 2 | LOG-02 | unit | (same as LOG-01) | No — W0 | pending |
-| 02-05-03 | 05 | 2 | LOG-03 | unit | (same as LOG-01) | No — W0 | pending |
-| 02-05-04 | 05 | 2 | ERR-03 | unit | `npm test --workspace packages/runtime -- --testPathPattern adapters/claude` (error scenario) | No — W0 | pending |
+| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | Status |
+|---------|------|------|-------------|-----------|-------------------|--------|
+| 02-00 T1 | 00 | 1 | TEST-01 | infra | `npx vitest run` + `npx tsc --noEmit` | pending |
+| 02-01 T1 | 01 | 2 | CONF-01, CONF-03, ADPT-10 | unit | `npx tsc --noEmit` | pending |
+| 02-01 T2 | 01 | 2 | CONF-02, CONF-04, ADPT-09, ERR-05 | unit | `npx vitest run tests/config tests/process` | pending |
+| 02-02 T1 | 02 | 3 | SESS-01..04, LOG-01..03, ADPT-02 | unit | `npx tsc --noEmit` + smoke test | pending |
+| 02-02 T2 | 02 | 3 | SESS-01..04, ADPT-02, LOG-01..03 | unit | `npx vitest run tests/session tests/hooks` | pending |
+| 02-03 T1 | 03 | 4 | ERR-03, LOG-02 | unit | `npx tsc --noEmit` | pending |
+| 02-03 T2 | 03 | 4 | ADPT-03..08 | unit | `npx tsc --noEmit` + smoke test | pending |
+| 02-04 T1 | 04 | 5 | TEST-02 | infra | `bash -n` shim syntax check | pending |
+| 02-04 T2 | 04 | 5 | TEST-01, TEST-02 | smoke | `npx vitest run` (full suite) | pending |
 
 ---
 
-## Wave 0 Requirements
+## Wave 0 Requirements (Plan 02-00)
 
 - [ ] `packages/runtime/vitest.config.ts` — vitest config for runtime package
 - [ ] `packages/runtime/package.json` — add `"test": "vitest run"` script and vitest devDependency
-- [ ] `packages/runtime/tests/` — test directory tree
-- [ ] `packages/runtime/tests/fixtures/shims/` — six fake CLI shell scripts with chmod +x
-- [ ] `packages/runtime/tests/helpers/path-override.ts` — PATH injection helper for shim tests
+- [ ] `packages/runtime/tsconfig.build.json` — production build config
+- [ ] `packages/runtime/tests/smoke.test.ts` — infrastructure smoke test
 
 ---
 
