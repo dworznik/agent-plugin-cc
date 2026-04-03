@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build plugin companion
+        run: npm run build --workspace=packages/plugin
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Paperclip-free check (ADPT-01)
+        run: |
+          cd packages/runtime
+          PACK_OUTPUT=$(npm pack --dry-run 2>&1)
+          echo "$PACK_OUTPUT"
+          if echo "$PACK_OUTPUT" | grep -i "paperclip"; then
+            echo "ERROR: paperclip reference found in runtime pack output"
+            exit 1
+          fi
+          echo "OK: runtime package has no paperclip references"
+
+          cd ../plugin
+          PACK_OUTPUT=$(npm pack --dry-run 2>&1)
+          echo "$PACK_OUTPUT"
+          if echo "$PACK_OUTPUT" | grep -i "paperclip"; then
+            echo "ERROR: paperclip reference found in plugin pack output"
+            exit 1
+          fi
+          echo "OK: plugin package has no paperclip references"
