@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-04-03T22:25:20.797Z"
+stopped_at: Completed 02-03-PLAN.md
+last_updated: "2026-04-03T22:35:57.233Z"
 last_activity: 2026-04-03
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 8
-  completed_plans: 6
+  completed_plans: 7
   percent: 0
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-04)
 ## Current Position
 
 Phase: 02 (runtime-core) — EXECUTING
-Plan: 4 of 5
+Plan: 5 of 5
 Status: Ready to execute
 Last activity: 2026-04-03
 
@@ -57,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-runtime-core P00 | 5 | 1 tasks | 5 files |
 | Phase 02-runtime-core P01 | 5 | 2 tasks | 10 files |
 | Phase 02-runtime-core P02 | 4 | 2 tasks | 7 files |
+| Phase 02-runtime-core P03 | 4 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,7 @@ Recent decisions affecting current work:
 - [Phase 02-runtime-core]: loadSession accepts optional warn callback so callers control warning output; defaultHooks passes console.warn; tests pass a spy
 - [Phase 02-runtime-core]: Logger durationMs only on info() — timing is for adapter execution events per LOG-02; keeps interface minimal
 - [Phase 02-runtime-core]: defaultHooks.buildAgentEnv returns same baseEnv reference (not copy) — hooks that extend env create a new object
+- [Phase 02-runtime-core]: Adapters: BaseAdapter.execute() accepts optional Logger; Pi adapter uses path-based session (not UUID); adapters throw AdapterProcessError on null parse
 
 ### Pending Todos
 
@@ -92,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-03T22:25:20.794Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-04-03T22:35:57.230Z
+Stopped at: Completed 02-03-PLAN.md
 Resume file: None

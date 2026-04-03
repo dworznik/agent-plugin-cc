@@ -43,12 +43,12 @@
 
 - [ ] **ADPT-01**: Runtime package has zero imports from Paperclip server, database, or host-plugin SDK — enforced by a package-boundary lint rule or import check in CI
 - [x] **ADPT-02**: Runtime package exports five plugin-owned hook interfaces: `buildAgentEnv`, `resolveInstructions`, `loadSession`, `saveSession`, `emitLog`
-- [ ] **ADPT-03**: `claude_local` adapter invokes the `claude` CLI, encodes/decodes session using Claude's session wire format, and parses its stdout output
-- [ ] **ADPT-04**: `codex_local` adapter invokes the `codex` CLI, encodes/decodes session using Codex's session wire format, and parses its stdout output
-- [ ] **ADPT-05**: `cursor` adapter invokes the Cursor CLI, encodes/decodes session using Cursor's session wire format, and parses its stdout output
-- [ ] **ADPT-06**: `gemini_local` adapter invokes the `gemini` CLI, encodes/decodes session using Gemini's session wire format, and parses its stdout output
-- [ ] **ADPT-07**: `opencode_local` adapter invokes the `opencode` CLI, encodes/decodes session using Opencode's session wire format, and parses its stdout output
-- [ ] **ADPT-08**: `pi_local` adapter invokes the Pi CLI, encodes/decodes session using Pi's session wire format, and parses its stdout output
+- [x] **ADPT-03**: `claude_local` adapter invokes the `claude` CLI, encodes/decodes session using Claude's session wire format, and parses its stdout output
+- [x] **ADPT-04**: `codex_local` adapter invokes the `codex` CLI, encodes/decodes session using Codex's session wire format, and parses its stdout output
+- [x] **ADPT-05**: `cursor` adapter invokes the Cursor CLI, encodes/decodes session using Cursor's session wire format, and parses its stdout output
+- [x] **ADPT-06**: `gemini_local` adapter invokes the `gemini` CLI, encodes/decodes session using Gemini's session wire format, and parses its stdout output
+- [x] **ADPT-07**: `opencode_local` adapter invokes the `opencode` CLI, encodes/decodes session using Opencode's session wire format, and parses its stdout output
+- [x] **ADPT-08**: `pi_local` adapter invokes the Pi CLI, encodes/decodes session using Pi's session wire format, and parses its stdout output
 - [x] **ADPT-09**: Child-process runner enforces a configurable timeout and kills the child process and returns a timeout error when the limit is exceeded
 - [x] **ADPT-10**: Runtime package exports JSON and JSONL parsing utilities that handle malformed input without throwing unhandled exceptions
 
@@ -79,7 +79,7 @@
 
 - [ ] **ERR-01**: All six commands return a non-zero exit code and a human-readable error message when `agents.json` is missing
 - [ ] **ERR-02**: All six commands return a non-zero exit code and a human-readable error message when `agents.json` fails schema validation
-- [ ] **ERR-03**: Companion script catches and logs adapter process errors (non-zero exit, crash, timeout) without crashing the companion process itself
+- [x] **ERR-03**: Companion script catches and logs adapter process errors (non-zero exit, crash, timeout) without crashing the companion process itself
 - [ ] **ERR-04**: Background worker writes the error details to job metadata when the adapter fails so `/agents:status` and `/agents:result` can surface the failure cause
 - [x] **ERR-05**: Companion script returns a descriptive error when `CLAUDE_PLUGIN_DATA` is not set or is not writable
 
@@ -173,12 +173,12 @@ Which phases cover which requirements. Populated during roadmap creation.
 | CMD-13 | Phase 3 | Pending |
 | ADPT-01 | Phase 1 | Pending |
 | ADPT-02 | Phase 2 | Complete |
-| ADPT-03 | Phase 2 | Pending |
-| ADPT-04 | Phase 2 | Pending |
-| ADPT-05 | Phase 2 | Pending |
-| ADPT-06 | Phase 2 | Pending |
-| ADPT-07 | Phase 2 | Pending |
-| ADPT-08 | Phase 2 | Pending |
+| ADPT-03 | Phase 2 | Complete |
+| ADPT-04 | Phase 2 | Complete |
+| ADPT-05 | Phase 2 | Complete |
+| ADPT-06 | Phase 2 | Complete |
+| ADPT-07 | Phase 2 | Complete |
+| ADPT-08 | Phase 2 | Complete |
 | ADPT-09 | Phase 2 | Complete |
 | ADPT-10 | Phase 2 | Complete |
 | SESS-01 | Phase 2 | Complete |
@@ -197,7 +197,7 @@ Which phases cover which requirements. Populated during roadmap creation.
 | DELEG-03 | Phase 3 | Pending |
 | ERR-01 | Phase 3 | Pending |
 | ERR-02 | Phase 3 | Pending |
-| ERR-03 | Phase 2 | Pending |
+| ERR-03 | Phase 2 | Complete |
 | ERR-04 | Phase 3 | Pending |
 | ERR-05 | Phase 2 | Complete |
 | LOG-01 | Phase 2 | Complete |
