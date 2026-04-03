@@ -51,7 +51,7 @@ Plans:
 - [x] 02-01-PLAN.md — Types, config schema/loader, process runner, JSON/JSONL parse utilities, unit tests
 - [x] 02-02-PLAN.md — Hooks with default implementations, session persistence, structured logging, unit tests
 - [x] 02-03-PLAN.md — BaseAdapter abstract class with Logger integration and all six CLI adapter subclasses
-- [ ] 02-04-PLAN.md — Adapter smoke tests with fake CLI shims
+- [x] 02-04-PLAN.md — Adapter smoke tests with fake CLI shims
 
 ### Phase 3: Commands & Execution
 **Goal**: A developer can configure agents with `/agents:setup`, dispatch tasks in foreground and background, track jobs, retrieve results, cancel running jobs, and have the delegation subagent auto-select the right agent — all with correct error handling

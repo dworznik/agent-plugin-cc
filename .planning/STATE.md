@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 02-03-PLAN.md
-last_updated: "2026-04-03T22:35:57.233Z"
+status: verifying
+stopped_at: Completed 02-04-PLAN.md
+last_updated: "2026-04-03T22:46:19.077Z"
 last_activity: 2026-04-03
 progress:
   total_phases: 3
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 8
-  completed_plans: 7
+  completed_plans: 8
   percent: 0
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-04-04)
 
 Phase: 02 (runtime-core) — EXECUTING
 Plan: 5 of 5
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-03
 
 Progress: [░░░░░░░░░░] 0%
@@ -58,6 +58,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-runtime-core P01 | 5 | 2 tasks | 10 files |
 | Phase 02-runtime-core P02 | 4 | 2 tasks | 7 files |
 | Phase 02-runtime-core P03 | 4 | 2 tasks | 8 files |
+| Phase 02-runtime-core P04 | 15 | 2 tasks | 13 files |
 
 ## Accumulated Context
 
@@ -82,6 +83,8 @@ Recent decisions affecting current work:
 - [Phase 02-runtime-core]: Logger durationMs only on info() — timing is for adapter execution events per LOG-02; keeps interface minimal
 - [Phase 02-runtime-core]: defaultHooks.buildAgentEnv returns same baseEnv reference (not copy) — hooks that extend env create a new object
 - [Phase 02-runtime-core]: Adapters: BaseAdapter.execute() accepts optional Logger; Pi adapter uses path-based session (not UUID); adapters throw AdapterProcessError on null parse
+- [Phase 02-runtime-core]: Fake CLI shims use __ADAPTER_TEST_MODE env var (success/error/timeout) to avoid requiring real CLI binaries in CI
+- [Phase 02-runtime-core]: PATH override helper uses beforeAll to chmod shims and beforeEach/afterEach to scope PATH injection
 
 ### Pending Todos
 
@@ -94,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-03T22:35:57.230Z
-Stopped at: Completed 02-03-PLAN.md
+Last session: 2026-04-03T22:46:19.074Z
+Stopped at: Completed 02-04-PLAN.md
 Resume file: None

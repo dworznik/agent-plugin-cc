@@ -92,7 +92,7 @@
 ### Testing
 
 - [x] **TEST-01**: Unit tests cover all runtime helper functions (child-process runner, session codec, JSON/JSONL parser, timeout handler) without requiring real CLI binaries
-- [ ] **TEST-02**: Each of the six adapters has a smoke test that uses a fake CLI shim and verifies the adapter correctly invokes the CLI, parses its output, and encodes/decodes a session
+- [x] **TEST-02**: Each of the six adapters has a smoke test that uses a fake CLI shim and verifies the adapter correctly invokes the CLI, parses its output, and encodes/decodes a session
 - [ ] **TEST-03**: Companion integration tests cover config load+validate, foreground task execution, background job dispatch, status poll, result retrieval, and cancellation — all using fake CLIs
 - [x] **TEST-04**: Plugin layout test verifies all required files (`marketplace.json`, `plugin.json`, command files, agent file, companion script) are present at the correct paths
 - [ ] **TEST-05**: All tests pass in CI without any real AI CLI binaries installed
@@ -204,7 +204,7 @@ Which phases cover which requirements. Populated during roadmap creation.
 | LOG-02 | Phase 2 | Complete |
 | LOG-03 | Phase 2 | Complete |
 | TEST-01 | Phase 2 | Complete |
-| TEST-02 | Phase 2 | Pending |
+| TEST-02 | Phase 2 | Complete |
 | TEST-03 | Phase 3 | Pending |
 | TEST-04 | Phase 1 | Complete |
 | TEST-05 | Phase 3 | Pending |
