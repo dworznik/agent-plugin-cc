@@ -41,7 +41,7 @@
 
 ### Adapter Runtime
 
-- [x] **ADPT-01**: Runtime package has zero imports from Paperclip server, database, or host-plugin SDK — enforced by a package-boundary lint rule or import check in CI
+- [ ] **ADPT-01**: Runtime package has zero imports from Paperclip server, database, or host-plugin SDK — enforced by a package-boundary lint rule or import check in CI
 - [ ] **ADPT-02**: Runtime package exports five plugin-owned hook interfaces: `buildAgentEnv`, `resolveInstructions`, `loadSession`, `saveSession`, `emitLog`
 - [ ] **ADPT-03**: `claude_local` adapter invokes the `claude` CLI, encodes/decodes session using Claude's session wire format, and parses its stdout output
 - [ ] **ADPT-04**: `codex_local` adapter invokes the `codex` CLI, encodes/decodes session using Codex's session wire format, and parses its stdout output
@@ -146,73 +146,73 @@ Which phases cover which requirements. Populated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| LAYOUT-01 | — | Pending |
-| LAYOUT-02 | — | Pending |
-| LAYOUT-03 | — | Pending |
-| LAYOUT-04 | — | Pending |
-| LAYOUT-05 | — | Pending |
-| LAYOUT-06 | — | Pending |
-| CONF-01 | — | Pending |
-| CONF-02 | — | Pending |
-| CONF-03 | — | Pending |
-| CONF-04 | — | Pending |
-| CONF-05 | — | Pending |
-| CONF-06 | — | Pending |
-| CMD-01 | — | Pending |
-| CMD-02 | — | Pending |
-| CMD-03 | — | Pending |
-| CMD-04 | — | Pending |
-| CMD-05 | — | Pending |
-| CMD-06 | — | Pending |
-| CMD-07 | — | Pending |
-| CMD-08 | — | Pending |
-| CMD-09 | — | Pending |
-| CMD-10 | — | Pending |
-| CMD-11 | — | Pending |
-| CMD-12 | — | Pending |
-| CMD-13 | — | Pending |
-| ADPT-01 | — | Complete |
-| ADPT-02 | — | Pending |
-| ADPT-03 | — | Pending |
-| ADPT-04 | — | Pending |
-| ADPT-05 | — | Pending |
-| ADPT-06 | — | Pending |
-| ADPT-07 | — | Pending |
-| ADPT-08 | — | Pending |
-| ADPT-09 | — | Pending |
-| ADPT-10 | — | Pending |
-| SESS-01 | — | Pending |
-| SESS-02 | — | Pending |
-| SESS-03 | — | Pending |
-| SESS-04 | — | Pending |
-| JOB-01 | — | Pending |
-| JOB-02 | — | Pending |
-| JOB-03 | — | Pending |
-| JOB-04 | — | Pending |
-| JOB-05 | — | Pending |
-| JOB-06 | — | Pending |
-| JOB-07 | — | Pending |
-| DELEG-01 | — | Pending |
-| DELEG-02 | — | Pending |
-| DELEG-03 | — | Pending |
-| ERR-01 | — | Pending |
-| ERR-02 | — | Pending |
-| ERR-03 | — | Pending |
-| ERR-04 | — | Pending |
-| ERR-05 | — | Pending |
-| LOG-01 | — | Pending |
-| LOG-02 | — | Pending |
-| LOG-03 | — | Pending |
-| TEST-01 | — | Pending |
-| TEST-02 | — | Pending |
-| TEST-03 | — | Pending |
-| TEST-04 | — | Pending |
-| TEST-05 | — | Pending |
+| LAYOUT-01 | Phase 1 | Pending |
+| LAYOUT-02 | Phase 1 | Pending |
+| LAYOUT-03 | Phase 1 | Pending |
+| LAYOUT-04 | Phase 1 | Pending |
+| LAYOUT-05 | Phase 1 | Pending |
+| LAYOUT-06 | Phase 1 | Pending |
+| CONF-01 | Phase 2 | Pending |
+| CONF-02 | Phase 2 | Pending |
+| CONF-03 | Phase 2 | Pending |
+| CONF-04 | Phase 2 | Pending |
+| CONF-05 | Phase 3 | Pending |
+| CONF-06 | Phase 3 | Pending |
+| CMD-01 | Phase 3 | Pending |
+| CMD-02 | Phase 3 | Pending |
+| CMD-03 | Phase 3 | Pending |
+| CMD-04 | Phase 3 | Pending |
+| CMD-05 | Phase 3 | Pending |
+| CMD-06 | Phase 3 | Pending |
+| CMD-07 | Phase 3 | Pending |
+| CMD-08 | Phase 3 | Pending |
+| CMD-09 | Phase 3 | Pending |
+| CMD-10 | Phase 3 | Pending |
+| CMD-11 | Phase 3 | Pending |
+| CMD-12 | Phase 3 | Pending |
+| CMD-13 | Phase 3 | Pending |
+| ADPT-01 | Phase 1 | Pending |
+| ADPT-02 | Phase 2 | Pending |
+| ADPT-03 | Phase 2 | Pending |
+| ADPT-04 | Phase 2 | Pending |
+| ADPT-05 | Phase 2 | Pending |
+| ADPT-06 | Phase 2 | Pending |
+| ADPT-07 | Phase 2 | Pending |
+| ADPT-08 | Phase 2 | Pending |
+| ADPT-09 | Phase 2 | Pending |
+| ADPT-10 | Phase 2 | Pending |
+| SESS-01 | Phase 2 | Pending |
+| SESS-02 | Phase 2 | Pending |
+| SESS-03 | Phase 2 | Pending |
+| SESS-04 | Phase 2 | Pending |
+| JOB-01 | Phase 3 | Pending |
+| JOB-02 | Phase 3 | Pending |
+| JOB-03 | Phase 3 | Pending |
+| JOB-04 | Phase 3 | Pending |
+| JOB-05 | Phase 3 | Pending |
+| JOB-06 | Phase 3 | Pending |
+| JOB-07 | Phase 3 | Pending |
+| DELEG-01 | Phase 3 | Pending |
+| DELEG-02 | Phase 3 | Pending |
+| DELEG-03 | Phase 3 | Pending |
+| ERR-01 | Phase 3 | Pending |
+| ERR-02 | Phase 3 | Pending |
+| ERR-03 | Phase 2 | Pending |
+| ERR-04 | Phase 3 | Pending |
+| ERR-05 | Phase 2 | Pending |
+| LOG-01 | Phase 2 | Pending |
+| LOG-02 | Phase 2 | Pending |
+| LOG-03 | Phase 2 | Pending |
+| TEST-01 | Phase 2 | Pending |
+| TEST-02 | Phase 2 | Pending |
+| TEST-03 | Phase 3 | Pending |
+| TEST-04 | Phase 1 | Pending |
+| TEST-05 | Phase 3 | Pending |
 
 **Coverage:**
-- v1 requirements: 58 total
-- Mapped to phases: 0
-- Unmapped: 58 ⚠️
+- v1 requirements: 62 total
+- Mapped to phases: 62
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-04-04*
