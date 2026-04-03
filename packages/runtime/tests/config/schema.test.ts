@@ -73,20 +73,6 @@ describe('AgentsConfigSchema', () => {
   });
 
   it('fails when adapterConfig has wrong discriminant', () => {
-    const input = {
-      agents: [
-        {
-          ...validAgent,
-          adapterConfig: {
-            adapterType: 'codex_local', // wrong: agent is claude_local but adapterConfig says codex_local
-            model: 'o4-mini',
-          },
-        },
-      ],
-    };
-    // This is valid because adapterConfig is independent of adapterType on the agent
-    // The schema allows any discriminant in adapterConfig
-    // However, let's test that an invalid discriminant value fails
     const inputInvalid = {
       agents: [
         {
