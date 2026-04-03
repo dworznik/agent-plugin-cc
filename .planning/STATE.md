@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 2 plans created (5 plans, 5 waves)
-last_updated: "2026-04-03T21:55:50.120Z"
+stopped_at: Completed 02-00-PLAN.md
+last_updated: "2026-04-03T22:02:21.210Z"
 last_activity: 2026-04-03
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 8
-  completed_plans: 3
+  completed_plans: 4
   percent: 0
 ---
 
@@ -21,12 +21,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-04)
 
 **Core value:** A developer can run any configured local agent as a background job from Claude Code, track it, and retrieve its output — with zero Paperclip infrastructure.
-**Current focus:** Phase 01 — foundation
+**Current focus:** Phase 02 — runtime-core
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
+Phase: 02 (runtime-core) — EXECUTING
+Plan: 2 of 5
 Status: Ready to execute
 Last activity: 2026-04-03
 
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 01-foundation P02 | 7 | 2 tasks | 14 files |
 | Phase 01-foundation P03 | 10 | 2 tasks | 4 files |
+| Phase 02-runtime-core P00 | 5 | 1 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,8 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: Set tsup entry as named object to produce agents-companion.cjs instead of index.cjs
 - [Phase 01-foundation]: Removed rootDir from plugin tsconfig.json since noEmit:true makes rootDir enforcement counterproductive for test-inclusive projects
 - [Phase 01-foundation]: Added types:[node] to plugin tsconfig instead of installing @types/node in plugin devDependencies — already hoisted from root
+- [Phase 02-runtime-core]: Split tsconfig pattern: tsconfig.json (noEmit, src+tests) for type-check; tsconfig.build.json (emit, src-only) for compilation
+- [Phase 02-runtime-core]: Added types:[node] to runtime tsconfig.json for consistency with plugin package pattern
 
 ### Pending Todos
 
@@ -81,6 +84,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-03T21:55:50.112Z
-Stopped at: Phase 2 plans created (5 plans, 5 waves)
-Resume file: .planning/phases/02-runtime-core/02-00-PLAN.md
+Last session: 2026-04-03T22:02:21.207Z
+Stopped at: Completed 02-00-PLAN.md
+Resume file: None

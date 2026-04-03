@@ -44,10 +44,10 @@ Plans:
   3. A session file is created at the correct workspace-hashed path after the first successful task run; `--fresh` deletes it; `--resume` reloads it
   4. All six adapter smoke tests pass using fake CLI fixtures — no real AI binaries needed
   5. Adapter timeout causes the companion to kill the child process and return a timeout error instead of hanging
-**Plans:** 5 plans
+**Plans:** 1/5 plans executed
 
 Plans:
-- [ ] 02-00-PLAN.md — Vitest test infrastructure, tsconfig split for runtime package
+- [x] 02-00-PLAN.md — Vitest test infrastructure, tsconfig split for runtime package
 - [ ] 02-01-PLAN.md — Types, config schema/loader, process runner, JSON/JSONL parse utilities, unit tests
 - [ ] 02-02-PLAN.md — Hooks with default implementations, session persistence, structured logging, unit tests
 - [ ] 02-03-PLAN.md — BaseAdapter abstract class with Logger integration and all six CLI adapter subclasses
@@ -73,5 +73,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete   | 2026-04-03 |
-| 2. Runtime Core | 0/5 | Not started | - |
+| 2. Runtime Core | 1/5 | In Progress|  |
 | 3. Commands & Execution | 0/TBD | Not started | - |
