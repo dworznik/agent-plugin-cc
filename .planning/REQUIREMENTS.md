@@ -7,11 +7,11 @@
 
 ### Plugin Layout
 
-- [ ] **LAYOUT-01**: Plugin package contains `.claude-plugin/marketplace.json` with valid plugin metadata (name, version, description, author)
-- [ ] **LAYOUT-02**: Plugin package contains `plugin.json` declaring all six commands and the delegation subagent
-- [ ] **LAYOUT-03**: Plugin package contains `commands/` directory with one file per command (`setup.md`, `list.md`, `task.md`, `status.md`, `result.md`, `cancel.md`)
-- [ ] **LAYOUT-04**: Plugin package contains `agents/` directory with the delegation subagent definition
-- [ ] **LAYOUT-05**: Plugin package contains `scripts/` directory with the Node companion script
+- [x] **LAYOUT-01**: Plugin package contains `.claude-plugin/marketplace.json` with valid plugin metadata (name, version, description, author)
+- [x] **LAYOUT-02**: Plugin package contains `plugin.json` declaring all six commands and the delegation subagent
+- [x] **LAYOUT-03**: Plugin package contains `commands/` directory with one file per command (`setup.md`, `list.md`, `task.md`, `status.md`, `result.md`, `cancel.md`)
+- [x] **LAYOUT-04**: Plugin package contains `agents/` directory with the delegation subagent definition
+- [x] **LAYOUT-05**: Plugin package contains `scripts/` directory with the Node companion script
 - [ ] **LAYOUT-06**: Plugin layout passes a structural conformance test that validates all required files are present
 
 ### Configuration
@@ -146,11 +146,11 @@ Which phases cover which requirements. Populated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| LAYOUT-01 | Phase 1 | Pending |
-| LAYOUT-02 | Phase 1 | Pending |
-| LAYOUT-03 | Phase 1 | Pending |
-| LAYOUT-04 | Phase 1 | Pending |
-| LAYOUT-05 | Phase 1 | Pending |
+| LAYOUT-01 | Phase 1 | Complete |
+| LAYOUT-02 | Phase 1 | Complete |
+| LAYOUT-03 | Phase 1 | Complete |
+| LAYOUT-04 | Phase 1 | Complete |
+| LAYOUT-05 | Phase 1 | Complete |
 | LAYOUT-06 | Phase 1 | Pending |
 | CONF-01 | Phase 2 | Pending |
 | CONF-02 | Phase 2 | Pending |

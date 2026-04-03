@@ -27,11 +27,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Plugin layout conformance test passes — all required files present and structurally valid
   3. `npm pack` produces a tarball with zero references to `paperclip-*` packages
   4. TypeScript compilation and vitest runner complete without errors in CI
-**Plans:** 3 plans
+**Plans:** 2/3 plans executed
 
 Plans:
 - [x] 01-01-PLAN.md — Monorepo skeleton, build tooling, TypeScript config, ESLint Paperclip boundary, npm install
-- [ ] 01-02-PLAN.md — Plugin layout files: marketplace.json, plugin.json, command stubs, delegation agent, companion stub
+- [x] 01-02-PLAN.md — Plugin layout files: marketplace.json, plugin.json, command stubs, delegation agent, companion stub
 - [ ] 01-03-PLAN.md — Layout conformance test, vitest config, GitHub Actions CI workflow
 
 ### Phase 2: Runtime Core
@@ -65,6 +65,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Planned | - |
+| 1. Foundation | 2/3 | In Progress|  |
 | 2. Runtime Core | 0/TBD | Not started | - |
 | 3. Commands & Execution | 0/TBD | Not started | - |

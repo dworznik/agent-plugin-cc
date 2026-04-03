@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 1 context gathered
-last_updated: "2026-04-03T18:39:13.575Z"
-last_activity: 2026-04-03 -- Phase 01 execution started
+stopped_at: Completed 01-02-PLAN.md
+last_updated: "2026-04-03T19:00:50.587Z"
+last_activity: 2026-04-03
 progress:
   total_phases: 3
   completed_phases: 0
   total_plans: 3
-  completed_plans: 0
+  completed_plans: 2
   percent: 0
 ---
 
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-04-04)
 ## Current Position
 
 Phase: 01 (foundation) — EXECUTING
-Plan: 1 of 3
-Status: Executing Phase 01
-Last activity: 2026-04-03 -- Phase 01 execution started
+Plan: 2 of 3
+Status: Ready to execute
+Last activity: 2026-04-03
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -52,6 +52,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01-foundation P02 | 7 | 2 tasks | 14 files |
 
 ## Accumulated Context
 
@@ -63,6 +64,8 @@ Recent decisions affecting current work:
 - Foundation: Enforce Paperclip boundary at package level via `no-restricted-imports` lint + `npm pack` CI check
 - Foundation: Use `tsup` to bundle companion to single `.cjs` file; `tsc` for runtime package declarations
 - Runtime: `zod` v3 is the single runtime dependency — schema + TypeScript types from one source
+- [Phase 01-foundation]: Use packages/plugin/.gitignore to un-ignore .claude-plugin/ and scripts/ directories which root .gitignore excluded
+- [Phase 01-foundation]: Set tsup entry as named object to produce agents-companion.cjs instead of index.cjs
 
 ### Pending Todos
 
@@ -75,6 +78,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-03T18:04:47.665Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-foundation/01-CONTEXT.md
+Last session: 2026-04-03T19:00:50.584Z
+Stopped at: Completed 01-02-PLAN.md
+Resume file: None
