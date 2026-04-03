@@ -30,7 +30,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Monorepo skeleton, build tooling, TypeScript config, ESLint Paperclip boundary, npm install
+- [x] 01-01-PLAN.md — Monorepo skeleton, build tooling, TypeScript config, ESLint Paperclip boundary, npm install
 - [ ] 01-02-PLAN.md — Plugin layout files: marketplace.json, plugin.json, command stubs, delegation agent, companion stub
 - [ ] 01-03-PLAN.md — Layout conformance test, vitest config, GitHub Actions CI workflow
 

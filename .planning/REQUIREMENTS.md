@@ -41,7 +41,7 @@
 
 ### Adapter Runtime
 
-- [ ] **ADPT-01**: Runtime package has zero imports from Paperclip server, database, or host-plugin SDK — enforced by a package-boundary lint rule or import check in CI
+- [x] **ADPT-01**: Runtime package has zero imports from Paperclip server, database, or host-plugin SDK — enforced by a package-boundary lint rule or import check in CI
 - [ ] **ADPT-02**: Runtime package exports five plugin-owned hook interfaces: `buildAgentEnv`, `resolveInstructions`, `loadSession`, `saveSession`, `emitLog`
 - [ ] **ADPT-03**: `claude_local` adapter invokes the `claude` CLI, encodes/decodes session using Claude's session wire format, and parses its stdout output
 - [ ] **ADPT-04**: `codex_local` adapter invokes the `codex` CLI, encodes/decodes session using Codex's session wire format, and parses its stdout output
@@ -171,7 +171,7 @@ Which phases cover which requirements. Populated during roadmap creation.
 | CMD-11 | — | Pending |
 | CMD-12 | — | Pending |
 | CMD-13 | — | Pending |
-| ADPT-01 | — | Pending |
+| ADPT-01 | — | Complete |
 | ADPT-02 | — | Pending |
 | ADPT-03 | — | Pending |
 | ADPT-04 | — | Pending |
