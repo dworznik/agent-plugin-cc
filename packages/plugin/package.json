@@ -1,0 +1,10 @@
+{
+  "name": "agent-plugin-cc",
+  "version": "0.1.0",
+  "description": "Run local AI agents as background jobs from Claude Code",
+  "private": false,
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run"
+  }
+}

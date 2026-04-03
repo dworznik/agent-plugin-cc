@@ -1,0 +1,19 @@
+{
+  "name": "@agent-plugin-cc/runtime",
+  "version": "0.1.0",
+  "description": "Paperclip-free adapter runtime for local AI CLI agents",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "zod": "^3"
+  }
+}
