@@ -12,7 +12,7 @@
 - [x] **LAYOUT-03**: Plugin package contains `commands/` directory with one file per command (`setup.md`, `list.md`, `task.md`, `status.md`, `result.md`, `cancel.md`)
 - [x] **LAYOUT-04**: Plugin package contains `agents/` directory with the delegation subagent definition
 - [x] **LAYOUT-05**: Plugin package contains `scripts/` directory with the Node companion script
-- [ ] **LAYOUT-06**: Plugin layout passes a structural conformance test that validates all required files are present
+- [x] **LAYOUT-06**: Plugin layout passes a structural conformance test that validates all required files are present
 
 ### Configuration
 
@@ -94,7 +94,7 @@
 - [ ] **TEST-01**: Unit tests cover all runtime helper functions (child-process runner, session codec, JSON/JSONL parser, timeout handler) without requiring real CLI binaries
 - [ ] **TEST-02**: Each of the six adapters has a smoke test that uses a fake CLI shim and verifies the adapter correctly invokes the CLI, parses its output, and encodes/decodes a session
 - [ ] **TEST-03**: Companion integration tests cover config load+validate, foreground task execution, background job dispatch, status poll, result retrieval, and cancellation — all using fake CLIs
-- [ ] **TEST-04**: Plugin layout test verifies all required files (`marketplace.json`, `plugin.json`, command files, agent file, companion script) are present at the correct paths
+- [x] **TEST-04**: Plugin layout test verifies all required files (`marketplace.json`, `plugin.json`, command files, agent file, companion script) are present at the correct paths
 - [ ] **TEST-05**: All tests pass in CI without any real AI CLI binaries installed
 
 ---
@@ -151,7 +151,7 @@ Which phases cover which requirements. Populated during roadmap creation.
 | LAYOUT-03 | Phase 1 | Complete |
 | LAYOUT-04 | Phase 1 | Complete |
 | LAYOUT-05 | Phase 1 | Complete |
-| LAYOUT-06 | Phase 1 | Pending |
+| LAYOUT-06 | Phase 1 | Complete |
 | CONF-01 | Phase 2 | Pending |
 | CONF-02 | Phase 2 | Pending |
 | CONF-03 | Phase 2 | Pending |
@@ -206,7 +206,7 @@ Which phases cover which requirements. Populated during roadmap creation.
 | TEST-01 | Phase 2 | Pending |
 | TEST-02 | Phase 2 | Pending |
 | TEST-03 | Phase 3 | Pending |
-| TEST-04 | Phase 1 | Pending |
+| TEST-04 | Phase 1 | Complete |
 | TEST-05 | Phase 3 | Pending |
 
 **Coverage:**
