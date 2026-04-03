@@ -44,7 +44,13 @@ Plans:
   3. A session file is created at the correct workspace-hashed path after the first successful task run; `--fresh` deletes it; `--resume` reloads it
   4. All six adapter smoke tests pass using fake CLI fixtures — no real AI binaries needed
   5. Adapter timeout causes the companion to kill the child process and return a timeout error instead of hanging
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Types, config schema/loader, process runner, JSON/JSONL parse utilities
+- [ ] 02-02-PLAN.md — Hooks with default implementations, session persistence, structured logging
+- [ ] 02-03-PLAN.md — BaseAdapter abstract class and all six CLI adapter subclasses
+- [ ] 02-04-PLAN.md — Unit tests for runtime helpers and adapter smoke tests with fake CLI shims
 
 ### Phase 3: Commands & Execution
 **Goal**: A developer can configure agents with `/agents:setup`, dispatch tasks in foreground and background, track jobs, retrieve results, cancel running jobs, and have the delegation subagent auto-select the right agent — all with correct error handling
@@ -66,5 +72,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete   | 2026-04-03 |
-| 2. Runtime Core | 0/TBD | Not started | - |
+| 2. Runtime Core | 0/4 | Not started | - |
 | 3. Commands & Execution | 0/TBD | Not started | - |
