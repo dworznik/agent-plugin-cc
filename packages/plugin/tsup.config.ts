@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/companion/index.ts'],
+  entry: { 'agents-companion': 'src/companion/index.ts' },
   format: ['cjs'],
   outDir: 'scripts',
   outExtension: () => ({ js: '.cjs' }),
