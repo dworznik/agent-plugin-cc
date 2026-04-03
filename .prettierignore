@@ -1,0 +1,7 @@
+dist/
+node_modules/
+scripts/
+.claude-plugin/
+.claude/
+.planning/
+package-lock.json
