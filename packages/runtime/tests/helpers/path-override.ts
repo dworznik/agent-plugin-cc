@@ -1,10 +1,8 @@
-import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
+import { join, resolve } from 'node:path';
 import { chmodSync, readdirSync } from 'node:fs';
 import { beforeAll, beforeEach, afterEach } from 'vitest';
 
-const SHIMS_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'fixtures', 'shims');
+const SHIMS_DIR = resolve(__dirname, '..', 'fixtures', 'shims');
 let origPath: string;
 
 export function useShimPath() {
