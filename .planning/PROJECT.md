@@ -12,7 +12,9 @@ A developer can run any configured local agent as a background job from Claude C
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Claude Code plugin package with standard layout: `.claude-plugin/marketplace.json`, `plugin.json`, `commands/`, `agents/`, `scripts/` — Validated in Phase 1: Foundation
+- [x] Plugin layout tests verify all required files are present at correct paths — Validated in Phase 1: Foundation
+- [x] No Paperclip dependency enforced at package boundary via ESLint `no-restricted-imports` — Validated in Phase 1: Foundation
 
 ### Active
 
@@ -71,4 +73,4 @@ A developer can run any configured local agent as a background job from Claude C
 | Session scoped to `(workspace root, agent id)` | Prevents cross-repo session pollution; makes session semantics predictable | — Pending |
 
 ---
-*Last updated: 2026-04-04 after initial project definition*
+*Last updated: 2026-04-04 after Phase 1 Foundation completion*
