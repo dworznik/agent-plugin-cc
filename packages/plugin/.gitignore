@@ -1,0 +1,3 @@
+# Allow plugin layout directories that are tracked in this package
+!.claude-plugin/
+!scripts/

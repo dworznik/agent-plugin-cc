@@ -1,0 +1,21 @@
+{
+  "name": "agents-plugin",
+  "owner": {
+    "name": "agent-plugin-cc"
+  },
+  "metadata": {
+    "description": "Run local AI agents as background jobs from Claude Code.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "agents",
+      "description": "Invoke local AI agents (Claude, Codex, Cursor, Gemini, Opencode, Pi) from Claude Code.",
+      "version": "0.1.0",
+      "author": {
+        "name": "agent-plugin-cc"
+      },
+      "source": ".."
+    }
+  ]
+}
