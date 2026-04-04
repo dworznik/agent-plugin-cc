@@ -95,7 +95,7 @@
 - [x] **TEST-02**: Each of the six adapters has a smoke test that uses a fake CLI shim and verifies the adapter correctly invokes the CLI, parses its output, and encodes/decodes a session
 - [x] **TEST-03**: Companion integration tests cover config load+validate, foreground task execution, background job dispatch, status poll, result retrieval, and cancellation — all using fake CLIs
 - [x] **TEST-04**: Plugin layout test verifies all required files (`marketplace.json`, `plugin.json`, command files, agent file, companion script) are present at the correct paths
-- [ ] **TEST-05**: All tests pass in CI without any real AI CLI binaries installed
+- [x] **TEST-05**: All tests pass in CI without any real AI CLI binaries installed
 
 ---
 
@@ -207,7 +207,7 @@ Which phases cover which requirements. Populated during roadmap creation.
 | TEST-02 | Phase 2 | Complete |
 | TEST-03 | Phase 3 | Complete |
 | TEST-04 | Phase 1 | Complete |
-| TEST-05 | Phase 3 | Pending |
+| TEST-05 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 62 total
