@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build runtime
+        run: pnpm --filter @agent-plugin-cc/runtime run build
+
       - name: TypeScript typecheck
         run: pnpm -w run typecheck
 

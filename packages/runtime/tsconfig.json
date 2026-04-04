@@ -2,8 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "emitDeclarationOnly": true,
-    "composite": true,
+    "noEmit": true,
     "types": ["node"]
   },
   "include": ["src/**/*.ts", "tests/**/*.ts"]
