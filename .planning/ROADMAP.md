@@ -63,13 +63,13 @@ Plans:
   3. `/agents:result <job-id>` prints the full agent output after the background job completes
   4. `/agents:cancel <job-id>` terminates the background worker and all child CLI processes; subsequent `/agents:status` returns `cancelled`
   5. All companion integration tests pass with fake CLIs, covering the full task → status → result → cancel lifecycle without any real AI binary installed
-**Plans:** 3/5 plans executed
+**Plans:** 4/5 plans executed
 
 Plans:
 - [x] 03-01-PLAN.md — Companion CLI entry point, setup/list subcommands, job metadata types, tsup worker entry
 - [x] 03-02-PLAN.md — Task, status, result, and cancel subcommands
 - [x] 03-03-PLAN.md — Background worker with adapter execution, cancel polling, job lifecycle
-- [ ] 03-04-PLAN.md — Command .md files with real Claude instructions, delegation subagent
+- [x] 03-04-PLAN.md — Command .md files with real Claude instructions, delegation subagent
 - [ ] 03-05-PLAN.md — Companion integration tests (setup, list, task, job lifecycle)
 
 ## Progress
@@ -81,4 +81,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete   | 2026-04-03 |
 | 2. Runtime Core | 4/5 | In Progress|  |
-| 3. Commands & Execution | 3/5 | In Progress|  |
+| 3. Commands & Execution | 4/5 | In Progress|  |

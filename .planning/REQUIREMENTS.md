@@ -71,9 +71,9 @@
 
 ### Delegation Subagent
 
-- [ ] **DELEG-01**: Delegation subagent reads all agent `description` fields from `agents.json` and selects the best-matching agent for the user's natural-language task description
-- [ ] **DELEG-02**: Delegation subagent invokes exactly one companion command after selecting an agent — it does not execute multiple agents in parallel
-- [ ] **DELEG-03**: Delegation subagent falls back to displaying a list of available agents with their descriptions when no agent description matches the task
+- [x] **DELEG-01**: Delegation subagent reads all agent `description` fields from `agents.json` and selects the best-matching agent for the user's natural-language task description
+- [x] **DELEG-02**: Delegation subagent invokes exactly one companion command after selecting an agent — it does not execute multiple agents in parallel
+- [x] **DELEG-03**: Delegation subagent falls back to displaying a list of available agents with their descriptions when no agent description matches the task
 
 ### Error Handling
 
@@ -192,9 +192,9 @@ Which phases cover which requirements. Populated during roadmap creation.
 | JOB-05 | Phase 3 | Pending |
 | JOB-06 | Phase 3 | Pending |
 | JOB-07 | Phase 3 | Complete |
-| DELEG-01 | Phase 3 | Pending |
-| DELEG-02 | Phase 3 | Pending |
-| DELEG-03 | Phase 3 | Pending |
+| DELEG-01 | Phase 3 | Complete |
+| DELEG-02 | Phase 3 | Complete |
+| DELEG-03 | Phase 3 | Complete |
 | ERR-01 | Phase 3 | Complete |
 | ERR-02 | Phase 3 | Complete |
 | ERR-03 | Phase 2 | Complete |
