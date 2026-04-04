@@ -20,8 +20,6 @@ export class ClaudeLocalAdapter extends BaseAdapter {
     const args = ['-p', prompt, '--output-format', 'json'];
     if (sessionId) {
       args.push('--resume', sessionId);
-    } else {
-      args.push('--no-session-persistence');
     }
     return args;
   }

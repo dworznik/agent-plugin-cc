@@ -29,7 +29,10 @@ export class CursorAdapter extends BaseAdapter {
     if (!parsed) {
       throw new AdapterProcessError(null, `cursor: failed to parse JSON output: ${stdout.slice(0, 200)}`);
     }
-    const output = parsed.result ?? parsed.text ?? parsed.message ?? '';
+    const output = parsed.result ?? parsed.text ?? parsed.message;
+    if (output === undefined) {
+      throw new AdapterProcessError(null, `cursor: response missing result/text/message fields: ${JSON.stringify(parsed).slice(0, 200)}`);
+    }
     const sessionId = parsed.chat_id ?? parsed.chatId;
     const { result, text, message, chat_id, chatId, ...rest } = parsed;
     return {
