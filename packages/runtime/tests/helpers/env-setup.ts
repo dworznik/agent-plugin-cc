@@ -3,16 +3,15 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { beforeEach, afterEach } from 'vitest';
 
-let testDataDir: string;
-
 export function useTestPluginData() {
+  let dir: string;
   beforeEach(() => {
-    testDataDir = mkdtempSync(join(tmpdir(), 'agent-plugin-cc-test-'));
-    process.env['CLAUDE_PLUGIN_DATA'] = testDataDir;
+    dir = mkdtempSync(join(tmpdir(), 'agent-plugin-cc-test-'));
+    process.env['CLAUDE_PLUGIN_DATA'] = dir;
   });
   afterEach(() => {
     delete process.env['CLAUDE_PLUGIN_DATA'];
-    rmSync(testDataDir, { recursive: true, force: true });
+    rmSync(dir, { recursive: true, force: true });
   });
-  return { getDir: () => testDataDir };
+  return { getDir: () => dir };
 }
