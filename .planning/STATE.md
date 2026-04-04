@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-04-PLAN.md
-last_updated: "2026-04-04T11:16:08.169Z"
+stopped_at: Completed 03-05-PLAN.md
+last_updated: "2026-04-04T11:33:06.987Z"
 last_activity: 2026-04-04
 progress:
   total_phases: 3
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-04)
 ## Current Position
 
 Phase: 03 (commands-execution) — EXECUTING
-Plan: 2 of 5
+Plan: 3 of 5
 Status: Ready to execute
 Last activity: 2026-04-04
 
@@ -61,6 +61,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-runtime-core P04 | 15 | 2 tasks | 13 files |
 | Phase 03-commands-execution P02 | 14 | 3 tasks | 7 files |
 | Phase 03-commands-execution P04 | 5 | 2 tasks | 7 files |
+| Phase 03-commands-execution P05 | 25 | 1 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -91,6 +92,8 @@ Recent decisions affecting current work:
 - [Phase 03-commands-execution]: createLogger signature is (jobId, logPath, emitLog) — plan doc was incorrect; used getLogPath() helper to compute log path
 - [Phase 03-commands-execution]: Command .md files instruct Claude to invoke agents-companion.cjs and parse JSON output rather than using bare ! pass-through
 - [Phase 03-commands-execution]: Delegation subagent uses companion list (not direct agents.json read) as single source of truth per D-12
+- [Phase 03-commands-execution]: Replace fork() with spawn(process.execPath,...) for worker — fork() creates IPC channel preventing true background detachment
+- [Phase 03-commands-execution]: Lifecycle tests: pollJobStatus helper polls companion status every 250ms up to 8s; cancel test uses 3s shim delay and 15s test timeout
 
 ### Pending Todos
 
@@ -103,6 +106,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-04T11:16:08.164Z
-Stopped at: Completed 03-04-PLAN.md
+Last session: 2026-04-04T11:33:06.928Z
+Stopped at: Completed 03-05-PLAN.md
 Resume file: None
