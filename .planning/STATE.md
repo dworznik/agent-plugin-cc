@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 02-04-PLAN.md
-last_updated: "2026-04-03T22:54:44.942Z"
-last_activity: 2026-04-03
+status: executing
+stopped_at: Completed 03-05-PLAN.md
+last_updated: "2026-04-04T11:54:28.910Z"
+last_activity: 2026-04-04
 progress:
   total_phases: 3
-  completed_phases: 2
-  total_plans: 8
-  completed_plans: 8
+  completed_phases: 3
+  total_plans: 13
+  completed_plans: 13
   percent: 0
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-04)
 
 **Core value:** A developer can run any configured local agent as a background job from Claude Code, track it, and retrieve its output — with zero Paperclip infrastructure.
-**Current focus:** Phase 02 — runtime-core
+**Current focus:** Phase 03 — commands-execution
 
 ## Current Position
 
-Phase: 3
+Phase: 03
 Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-04-03
+Status: Ready to execute
+Last activity: 2026-04-04
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -59,6 +59,9 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-runtime-core P02 | 4 | 2 tasks | 7 files |
 | Phase 02-runtime-core P03 | 4 | 2 tasks | 8 files |
 | Phase 02-runtime-core P04 | 15 | 2 tasks | 13 files |
+| Phase 03-commands-execution P02 | 14 | 3 tasks | 7 files |
+| Phase 03-commands-execution P04 | 5 | 2 tasks | 7 files |
+| Phase 03-commands-execution P05 | 25 | 1 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -85,6 +88,12 @@ Recent decisions affecting current work:
 - [Phase 02-runtime-core]: Adapters: BaseAdapter.execute() accepts optional Logger; Pi adapter uses path-based session (not UUID); adapters throw AdapterProcessError on null parse
 - [Phase 02-runtime-core]: Fake CLI shims use __ADAPTER_TEST_MODE env var (success/error/timeout) to avoid requiring real CLI binaries in CI
 - [Phase 02-runtime-core]: PATH override helper uses beforeAll to chmod shims and beforeEach/afterEach to scope PATH injection
+- [Phase 03-commands-execution]: Used realpathSync to normalize macOS /var vs /private/var symlink difference in tests — getStatePath hash must match child process.cwd()
+- [Phase 03-commands-execution]: createLogger signature is (jobId, logPath, emitLog) — plan doc was incorrect; used getLogPath() helper to compute log path
+- [Phase 03-commands-execution]: Command .md files instruct Claude to invoke agents-companion.cjs and parse JSON output rather than using bare ! pass-through
+- [Phase 03-commands-execution]: Delegation subagent uses companion list (not direct agents.json read) as single source of truth per D-12
+- [Phase 03-commands-execution]: Replace fork() with spawn(process.execPath,...) for worker — fork() creates IPC channel preventing true background detachment
+- [Phase 03-commands-execution]: Lifecycle tests: pollJobStatus helper polls companion status every 250ms up to 8s; cancel test uses 3s shim delay and 15s test timeout
 
 ### Pending Todos
 
@@ -97,6 +106,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-03T22:46:19.074Z
-Stopped at: Completed 02-04-PLAN.md
+Last session: 2026-04-04T11:33:06.928Z
+Stopped at: Completed 03-05-PLAN.md
 Resume file: None

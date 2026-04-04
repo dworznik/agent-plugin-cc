@@ -22,15 +22,16 @@ A developer can run any configured local agent as a background job from Claude C
 - [x] Plugin-local runtime state persisted under `CLAUDE_PLUGIN_DATA/state/<workspace-hash>/` (sessions, job metadata, logs, results, cancel bookkeeping) — Validated in Phase 2: Runtime Core
 - [x] One persistent session per `(workspace root, agent id)`; `--fresh` discards, `--resume` reuses — Validated in Phase 2: Runtime Core
 
+- [x] Six commands: `/agents:setup`, `/agents:list`, `/agents:task`, `/agents:status`, `/agents:result`, `/agents:cancel` — Validated in Phase 3: Commands & Execution
+- [x] One thin delegation subagent that selects the best agent by `description` and invokes exactly one companion command — Validated in Phase 3: Commands & Execution
+- [x] Node companion script: locates workspace root, loads/validates config, runs adapter, streams progress, persists background job state — Validated in Phase 3: Commands & Execution
+- [x] Foreground mode returns output directly; background mode spawns detached worker and records job id — Validated in Phase 3: Commands & Execution
+- [x] Companion is source of truth for status/result/cancel — not Claude memory — Validated in Phase 3: Commands & Execution
+- [x] Unit tests for runtime helpers; per-adapter smoke tests with fake CLIs; companion tests for config, session, job lifecycle; plugin layout tests — Validated in Phase 3: Commands & Execution
+- [x] CI relies on fixtures only — no real CLI binaries required — Validated in Phase 3: Commands & Execution
+
 ### Active
-- [ ] Claude Code plugin package with standard layout: `.claude-plugin/marketplace.json`, `plugin.json`, `commands/`, `agents/`, `scripts/`
-- [ ] Six commands: `/agents:setup`, `/agents:list`, `/agents:task`, `/agents:status`, `/agents:result`, `/agents:cancel`
-- [ ] One thin delegation subagent that selects the best agent by `description` and invokes exactly one companion command
-- [ ] Node companion script: locates workspace root, loads/validates config, runs adapter, streams progress, persists background job state
-- [ ] Foreground mode returns output directly; background mode spawns detached worker and records job id
-- [ ] Companion is source of truth for status/result/cancel — not Claude memory
-- [ ] Unit tests for runtime helpers; per-adapter smoke tests with fake CLIs; companion tests for config, session, job lifecycle; plugin layout tests
-- [ ] CI relies on fixtures only — no real CLI binaries required
+- (No active requirements — all milestone requirements validated)
 
 ### Out of Scope
 
@@ -63,13 +64,13 @@ A developer can run any configured local agent as a background job from Claude C
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Extract runtime core as separate publishable package | Enables standalone use without Paperclip; clean boundary enforces the no-dependency constraint | — Pending |
-| Use `.claude/agents.json` as config path | Neutral namespace (not `paperclip`), repo-local, discoverable by Claude Code, consistent with `.claude/` conventions | — Pending |
-| Companion script is source of truth for job state | Claude context window is ephemeral; disk-based state survives context resets and session boundaries | — Pending |
-| Command namespace `/agents:*` not `/paperclip:*` | User-facing branding must be neutral and reusable outside Paperclip orgs | — Pending |
-| One thin delegation subagent, not MCP tools | Command-based UX ships faster and mirrors proven `codex-plugin-cc` pattern; MCP deferred to v2 | — Pending |
-| Background mode uses detached Node worker process | Matches codex-companion pattern; allows long-running agents without blocking Claude session | — Pending |
-| Session scoped to `(workspace root, agent id)` | Prevents cross-repo session pollution; makes session semantics predictable | — Pending |
+| Extract runtime core as separate publishable package | Enables standalone use without Paperclip; clean boundary enforces the no-dependency constraint | Validated Phase 2 |
+| Use `.claude/agents.json` as config path | Neutral namespace (not `paperclip`), repo-local, discoverable by Claude Code, consistent with `.claude/` conventions | Validated Phase 2 |
+| Companion script is source of truth for job state | Claude context window is ephemeral; disk-based state survives context resets and session boundaries | Validated Phase 3 |
+| Command namespace `/agents:*` not `/paperclip:*` | User-facing branding must be neutral and reusable outside Paperclip orgs | Validated Phase 3 |
+| One thin delegation subagent, not MCP tools | Command-based UX ships faster and mirrors proven `codex-plugin-cc` pattern; MCP deferred to v2 | Validated Phase 3 |
+| Background mode uses detached Node worker process | Matches codex-companion pattern; allows long-running agents without blocking Claude session | Validated Phase 3 |
+| Session scoped to `(workspace root, agent id)` | Prevents cross-repo session pollution; makes session semantics predictable | Validated Phase 2 |
 
 ---
-*Last updated: 2026-04-04 after Phase 2 Runtime Core completion*
+*Last updated: 2026-04-04 after Phase 3 Commands & Execution completion — all v1.0 milestone phases complete*
