@@ -15,15 +15,14 @@ A developer can run any configured local agent as a background job from Claude C
 - [x] Claude Code plugin package with standard layout: `.claude-plugin/marketplace.json`, `plugin.json`, `commands/`, `agents/`, `scripts/` — Validated in Phase 1: Foundation
 - [x] Plugin layout tests verify all required files are present at correct paths — Validated in Phase 1: Foundation
 - [x] No Paperclip dependency enforced at package boundary via ESLint `no-restricted-imports` — Validated in Phase 1: Foundation
+- [x] Extract a Paperclip-free adapter runtime package with only neutral execution primitives (types, session codecs, prompt helpers, child-process runner, JSON/JSONL parsing, timeout handling, per-adapter execute/test/parse/session code) — Validated in Phase 2: Runtime Core
+- [x] Plugin-owned hooks replace Paperclip control-plane: `buildAgentEnv`, `resolveInstructions`, `loadSession`, `saveSession`, `emitLog` — Validated in Phase 2: Runtime Core
+- [x] Support exactly six local CLI adapters in v1: `claude_local`, `codex_local`, `cursor`, `gemini_local`, `opencode_local`, `pi_local` — Validated in Phase 2: Runtime Core
+- [x] Standalone agent config at `.claude/agents.json` with JSON Schema validation (fields: `defaultAgent`, `agents[]` with `id`, `label`, `description`, `adapterType`, `adapterConfig`) — Validated in Phase 2: Runtime Core
+- [x] Plugin-local runtime state persisted under `CLAUDE_PLUGIN_DATA/state/<workspace-hash>/` (sessions, job metadata, logs, results, cancel bookkeeping) — Validated in Phase 2: Runtime Core
+- [x] One persistent session per `(workspace root, agent id)`; `--fresh` discards, `--resume` reuses — Validated in Phase 2: Runtime Core
 
 ### Active
-
-- [ ] Extract a Paperclip-free adapter runtime package with only neutral execution primitives (types, session codecs, prompt helpers, child-process runner, JSON/JSONL parsing, timeout handling, per-adapter execute/test/parse/session code)
-- [ ] Plugin-owned hooks replace Paperclip control-plane: `buildAgentEnv`, `resolveInstructions`, `loadSession`, `saveSession`, `emitLog`
-- [ ] Support exactly six local CLI adapters in v1: `claude_local`, `codex_local`, `cursor`, `gemini_local`, `opencode_local`, `pi_local`
-- [ ] Standalone agent config at `.claude/agents.json` with JSON Schema validation (fields: `defaultAgent`, `agents[]` with `id`, `label`, `description`, `adapterType`, `adapterConfig`)
-- [ ] Plugin-local runtime state persisted under `CLAUDE_PLUGIN_DATA/state/<workspace-hash>/` (sessions, job metadata, logs, results, cancel bookkeeping)
-- [ ] One persistent session per `(workspace root, agent id)`; `--fresh` discards, `--resume` reuses
 - [ ] Claude Code plugin package with standard layout: `.claude-plugin/marketplace.json`, `plugin.json`, `commands/`, `agents/`, `scripts/`
 - [ ] Six commands: `/agents:setup`, `/agents:list`, `/agents:task`, `/agents:status`, `/agents:result`, `/agents:cancel`
 - [ ] One thin delegation subagent that selects the best agent by `description` and invokes exactly one companion command
@@ -73,4 +72,4 @@ A developer can run any configured local agent as a background job from Claude C
 | Session scoped to `(workspace root, agent id)` | Prevents cross-repo session pollution; makes session semantics predictable | — Pending |
 
 ---
-*Last updated: 2026-04-04 after Phase 1 Foundation completion*
+*Last updated: 2026-04-04 after Phase 2 Runtime Core completion*

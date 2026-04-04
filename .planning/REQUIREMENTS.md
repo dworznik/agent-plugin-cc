@@ -16,10 +16,10 @@
 
 ### Configuration
 
-- [ ] **CONF-01**: `agents.json` schema defines `defaultAgent` (string, optional) and `agents[]` array with required fields `id`, `label`, `description`, `adapterType`, and optional `adapterConfig`
-- [ ] **CONF-02**: Companion script validates `agents.json` against JSON Schema at startup and exits with a human-readable error message that includes the failing field path when validation fails
-- [ ] **CONF-03**: `adapterType` field in `agents.json` is restricted to exactly: `claude_local`, `codex_local`, `cursor`, `gemini_local`, `opencode_local`, `pi_local`
-- [ ] **CONF-04**: Companion script locates the workspace root by walking up from the current directory to find the nearest `.claude/agents.json`
+- [x] **CONF-01**: `agents.json` schema defines `defaultAgent` (string, optional) and `agents[]` array with required fields `id`, `label`, `description`, `adapterType`, and optional `adapterConfig`
+- [x] **CONF-02**: Companion script validates `agents.json` against JSON Schema at startup and exits with a human-readable error message that includes the failing field path when validation fails
+- [x] **CONF-03**: `adapterType` field in `agents.json` is restricted to exactly: `claude_local`, `codex_local`, `cursor`, `gemini_local`, `opencode_local`, `pi_local`
+- [x] **CONF-04**: Companion script locates the workspace root by walking up from the current directory to find the nearest `.claude/agents.json`
 - [ ] **CONF-05**: `/agents:setup` wizard writes a valid `agents.json` to `.claude/agents.json` and validates the written file before confirming success
 - [ ] **CONF-06**: `/agents:setup` prompts for `id`, `label`, `description`, `adapterType`, and adapter-specific `adapterConfig` fields for each agent added
 
@@ -42,22 +42,22 @@
 ### Adapter Runtime
 
 - [ ] **ADPT-01**: Runtime package has zero imports from Paperclip server, database, or host-plugin SDK — enforced by a package-boundary lint rule or import check in CI
-- [ ] **ADPT-02**: Runtime package exports five plugin-owned hook interfaces: `buildAgentEnv`, `resolveInstructions`, `loadSession`, `saveSession`, `emitLog`
-- [ ] **ADPT-03**: `claude_local` adapter invokes the `claude` CLI, encodes/decodes session using Claude's session wire format, and parses its stdout output
-- [ ] **ADPT-04**: `codex_local` adapter invokes the `codex` CLI, encodes/decodes session using Codex's session wire format, and parses its stdout output
-- [ ] **ADPT-05**: `cursor` adapter invokes the Cursor CLI, encodes/decodes session using Cursor's session wire format, and parses its stdout output
-- [ ] **ADPT-06**: `gemini_local` adapter invokes the `gemini` CLI, encodes/decodes session using Gemini's session wire format, and parses its stdout output
-- [ ] **ADPT-07**: `opencode_local` adapter invokes the `opencode` CLI, encodes/decodes session using Opencode's session wire format, and parses its stdout output
-- [ ] **ADPT-08**: `pi_local` adapter invokes the Pi CLI, encodes/decodes session using Pi's session wire format, and parses its stdout output
-- [ ] **ADPT-09**: Child-process runner enforces a configurable timeout and kills the child process and returns a timeout error when the limit is exceeded
-- [ ] **ADPT-10**: Runtime package exports JSON and JSONL parsing utilities that handle malformed input without throwing unhandled exceptions
+- [x] **ADPT-02**: Runtime package exports five plugin-owned hook interfaces: `buildAgentEnv`, `resolveInstructions`, `loadSession`, `saveSession`, `emitLog`
+- [x] **ADPT-03**: `claude_local` adapter invokes the `claude` CLI, encodes/decodes session using Claude's session wire format, and parses its stdout output
+- [x] **ADPT-04**: `codex_local` adapter invokes the `codex` CLI, encodes/decodes session using Codex's session wire format, and parses its stdout output
+- [x] **ADPT-05**: `cursor` adapter invokes the Cursor CLI, encodes/decodes session using Cursor's session wire format, and parses its stdout output
+- [x] **ADPT-06**: `gemini_local` adapter invokes the `gemini` CLI, encodes/decodes session using Gemini's session wire format, and parses its stdout output
+- [x] **ADPT-07**: `opencode_local` adapter invokes the `opencode` CLI, encodes/decodes session using Opencode's session wire format, and parses its stdout output
+- [x] **ADPT-08**: `pi_local` adapter invokes the Pi CLI, encodes/decodes session using Pi's session wire format, and parses its stdout output
+- [x] **ADPT-09**: Child-process runner enforces a configurable timeout and kills the child process and returns a timeout error when the limit is exceeded
+- [x] **ADPT-10**: Runtime package exports JSON and JSONL parsing utilities that handle malformed input without throwing unhandled exceptions
 
 ### Session Persistence
 
-- [ ] **SESS-01**: Companion script creates a session file at `CLAUDE_PLUGIN_DATA/state/<sha256(workspaceRoot)>/sessions/<agent-id>` after the first successful task run
-- [ ] **SESS-02**: Companion script loads the existing session file and passes it to the adapter codec when `--resume` flag is set and a session file exists
-- [ ] **SESS-03**: Companion script deletes the session file for `(workspace, agent-id)` when `--fresh` flag is set, then runs the task without a session
-- [ ] **SESS-04**: Sessions for different workspace roots are stored in separate hash-partitioned directories and cannot be accessed cross-workspace
+- [x] **SESS-01**: Companion script creates a session file at `CLAUDE_PLUGIN_DATA/state/<sha256(workspaceRoot)>/sessions/<agent-id>` after the first successful task run
+- [x] **SESS-02**: Companion script loads the existing session file and passes it to the adapter codec when `--resume` flag is set and a session file exists
+- [x] **SESS-03**: Companion script deletes the session file for `(workspace, agent-id)` when `--fresh` flag is set, then runs the task without a session
+- [x] **SESS-04**: Sessions for different workspace roots are stored in separate hash-partitioned directories and cannot be accessed cross-workspace
 
 ### Background Jobs
 
@@ -79,20 +79,20 @@
 
 - [ ] **ERR-01**: All six commands return a non-zero exit code and a human-readable error message when `agents.json` is missing
 - [ ] **ERR-02**: All six commands return a non-zero exit code and a human-readable error message when `agents.json` fails schema validation
-- [ ] **ERR-03**: Companion script catches and logs adapter process errors (non-zero exit, crash, timeout) without crashing the companion process itself
+- [x] **ERR-03**: Companion script catches and logs adapter process errors (non-zero exit, crash, timeout) without crashing the companion process itself
 - [ ] **ERR-04**: Background worker writes the error details to job metadata when the adapter fails so `/agents:status` and `/agents:result` can surface the failure cause
-- [ ] **ERR-05**: Companion script returns a descriptive error when `CLAUDE_PLUGIN_DATA` is not set or is not writable
+- [x] **ERR-05**: Companion script returns a descriptive error when `CLAUDE_PLUGIN_DATA` is not set or is not writable
 
 ### Logging
 
-- [ ] **LOG-01**: Companion script writes structured log entries (timestamp, level, job-id, message) to `CLAUDE_PLUGIN_DATA/state/<hash>/logs/<job-id>.log` for each background job
-- [ ] **LOG-02**: Adapter execution start, completion, and failure events are logged with timing information
-- [ ] **LOG-03**: `emitLog` hook is called for each log entry, allowing plugin consumers to intercept logs without modifying the runtime package
+- [x] **LOG-01**: Companion script writes structured log entries (timestamp, level, job-id, message) to `CLAUDE_PLUGIN_DATA/state/<hash>/logs/<job-id>.log` for each background job
+- [x] **LOG-02**: Adapter execution start, completion, and failure events are logged with timing information
+- [x] **LOG-03**: `emitLog` hook is called for each log entry, allowing plugin consumers to intercept logs without modifying the runtime package
 
 ### Testing
 
-- [ ] **TEST-01**: Unit tests cover all runtime helper functions (child-process runner, session codec, JSON/JSONL parser, timeout handler) without requiring real CLI binaries
-- [ ] **TEST-02**: Each of the six adapters has a smoke test that uses a fake CLI shim and verifies the adapter correctly invokes the CLI, parses its output, and encodes/decodes a session
+- [x] **TEST-01**: Unit tests cover all runtime helper functions (child-process runner, session codec, JSON/JSONL parser, timeout handler) without requiring real CLI binaries
+- [x] **TEST-02**: Each of the six adapters has a smoke test that uses a fake CLI shim and verifies the adapter correctly invokes the CLI, parses its output, and encodes/decodes a session
 - [ ] **TEST-03**: Companion integration tests cover config load+validate, foreground task execution, background job dispatch, status poll, result retrieval, and cancellation — all using fake CLIs
 - [x] **TEST-04**: Plugin layout test verifies all required files (`marketplace.json`, `plugin.json`, command files, agent file, companion script) are present at the correct paths
 - [ ] **TEST-05**: All tests pass in CI without any real AI CLI binaries installed
@@ -152,10 +152,10 @@ Which phases cover which requirements. Populated during roadmap creation.
 | LAYOUT-04 | Phase 1 | Complete |
 | LAYOUT-05 | Phase 1 | Complete |
 | LAYOUT-06 | Phase 1 | Complete |
-| CONF-01 | Phase 2 | Pending |
-| CONF-02 | Phase 2 | Pending |
-| CONF-03 | Phase 2 | Pending |
-| CONF-04 | Phase 2 | Pending |
+| CONF-01 | Phase 2 | Complete |
+| CONF-02 | Phase 2 | Complete |
+| CONF-03 | Phase 2 | Complete |
+| CONF-04 | Phase 2 | Complete |
 | CONF-05 | Phase 3 | Pending |
 | CONF-06 | Phase 3 | Pending |
 | CMD-01 | Phase 3 | Pending |
@@ -172,19 +172,19 @@ Which phases cover which requirements. Populated during roadmap creation.
 | CMD-12 | Phase 3 | Pending |
 | CMD-13 | Phase 3 | Pending |
 | ADPT-01 | Phase 1 | Pending |
-| ADPT-02 | Phase 2 | Pending |
-| ADPT-03 | Phase 2 | Pending |
-| ADPT-04 | Phase 2 | Pending |
-| ADPT-05 | Phase 2 | Pending |
-| ADPT-06 | Phase 2 | Pending |
-| ADPT-07 | Phase 2 | Pending |
-| ADPT-08 | Phase 2 | Pending |
-| ADPT-09 | Phase 2 | Pending |
-| ADPT-10 | Phase 2 | Pending |
-| SESS-01 | Phase 2 | Pending |
-| SESS-02 | Phase 2 | Pending |
-| SESS-03 | Phase 2 | Pending |
-| SESS-04 | Phase 2 | Pending |
+| ADPT-02 | Phase 2 | Complete |
+| ADPT-03 | Phase 2 | Complete |
+| ADPT-04 | Phase 2 | Complete |
+| ADPT-05 | Phase 2 | Complete |
+| ADPT-06 | Phase 2 | Complete |
+| ADPT-07 | Phase 2 | Complete |
+| ADPT-08 | Phase 2 | Complete |
+| ADPT-09 | Phase 2 | Complete |
+| ADPT-10 | Phase 2 | Complete |
+| SESS-01 | Phase 2 | Complete |
+| SESS-02 | Phase 2 | Complete |
+| SESS-03 | Phase 2 | Complete |
+| SESS-04 | Phase 2 | Complete |
 | JOB-01 | Phase 3 | Pending |
 | JOB-02 | Phase 3 | Pending |
 | JOB-03 | Phase 3 | Pending |
@@ -197,14 +197,14 @@ Which phases cover which requirements. Populated during roadmap creation.
 | DELEG-03 | Phase 3 | Pending |
 | ERR-01 | Phase 3 | Pending |
 | ERR-02 | Phase 3 | Pending |
-| ERR-03 | Phase 2 | Pending |
+| ERR-03 | Phase 2 | Complete |
 | ERR-04 | Phase 3 | Pending |
-| ERR-05 | Phase 2 | Pending |
-| LOG-01 | Phase 2 | Pending |
-| LOG-02 | Phase 2 | Pending |
-| LOG-03 | Phase 2 | Pending |
-| TEST-01 | Phase 2 | Pending |
-| TEST-02 | Phase 2 | Pending |
+| ERR-05 | Phase 2 | Complete |
+| LOG-01 | Phase 2 | Complete |
+| LOG-02 | Phase 2 | Complete |
+| LOG-03 | Phase 2 | Complete |
+| TEST-01 | Phase 2 | Complete |
+| TEST-02 | Phase 2 | Complete |
 | TEST-03 | Phase 3 | Pending |
 | TEST-04 | Phase 1 | Complete |
 | TEST-05 | Phase 3 | Pending |

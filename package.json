@@ -2,9 +2,9 @@
   "name": "agent-plugin-cc",
   "version": "1.0.0",
   "private": true,
-  "workspaces": ["packages/*"],
+  "packageManager": "pnpm@10.18.0",
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
+    "build": "pnpm -r run build",
     "test": "vitest run",
     "lint": "eslint .",
     "typecheck": "tsc --build",

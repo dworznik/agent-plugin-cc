@@ -1,0 +1,6 @@
+#!/bin/sh
+case "${__ADAPTER_TEST_MODE:-success}" in
+  success) printf '{"type":"message","role":"assistant","content":"Hello from codex"}\n{"type":"done","session_id":"codex-session-456"}\n'; exit 0;;
+  error) echo "Error: codex exec failed" >&2; exit 1;;
+  timeout) sleep 60;;
+esac
