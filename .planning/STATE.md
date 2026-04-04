@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-04-04T10:40:33.383Z"
+stopped_at: Completed 03-03-PLAN.md
+last_updated: "2026-04-04T10:52:37.790Z"
 last_activity: 2026-04-03
 progress:
   total_phases: 3
   completed_phases: 2
-  total_plans: 8
+  total_plans: 13
   completed_plans: 9
   percent: 0
 ---
@@ -60,6 +60,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-runtime-core P03 | 4 | 2 tasks | 8 files |
 | Phase 02-runtime-core P04 | 15 | 2 tasks | 13 files |
 | Phase 03-commands-execution P01 | 25 | 3 tasks | 16 files |
+| Phase 03-commands-execution P03 | 15 | 1 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -88,6 +89,8 @@ Recent decisions affecting current work:
 - [Phase 02-runtime-core]: PATH override helper uses beforeAll to chmod shims and beforeEach/afterEach to scope PATH injection
 - [Phase 03-commands-execution]: Stub commands for task/status/result/cancel created immediately to keep dispatch table compile-clean; Plans 02/03 replace them
 - [Phase 03-commands-execution]: runtime package.json corrected: main/exports use .js extension to match tsc NodeNext output (was .cjs causing tsup esbuild resolution failure)
+- [Phase 03-commands-execution]: Worker uses createLogger(jobId, logPath, emitLog) — actual runtime API differs from plan pseudocode; composed logPath via getLogPath
+- [Phase 03-commands-execution]: Worker IIFE async pattern for top-level await in CJS tsup target
 
 ### Pending Todos
 
@@ -100,6 +103,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-04T10:40:33.380Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-04-04T10:52:37.780Z
+Stopped at: Completed 03-03-PLAN.md
 Resume file: None

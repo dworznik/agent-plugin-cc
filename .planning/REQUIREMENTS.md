@@ -61,12 +61,12 @@
 
 ### Background Jobs
 
-- [ ] **JOB-01**: Background worker is spawned as a detached Node process that continues running after the parent companion script exits
-- [ ] **JOB-02**: Companion script writes job metadata (job-id, agent-id, status, start time, pid) to `CLAUDE_PLUGIN_DATA/state/<hash>/jobs/<job-id>.json` before returning the job-id
-- [ ] **JOB-03**: Background worker updates job metadata status to `running` when it starts executing the adapter
-- [ ] **JOB-04**: Background worker writes the agent output to `CLAUDE_PLUGIN_DATA/state/<hash>/results/<job-id>` and updates job status to `completed` on success
-- [ ] **JOB-05**: Background worker updates job status to `failed` and writes the error message to job metadata when the adapter exits with an error
-- [ ] **JOB-06**: Cancel operation writes a cancel sentinel file to `CLAUDE_PLUGIN_DATA/state/<hash>/cancel/<job-id>` and the background worker polls for it and terminates when detected
+- [x] **JOB-01**: Background worker is spawned as a detached Node process that continues running after the parent companion script exits
+- [x] **JOB-02**: Companion script writes job metadata (job-id, agent-id, status, start time, pid) to `CLAUDE_PLUGIN_DATA/state/<hash>/jobs/<job-id>.json` before returning the job-id
+- [x] **JOB-03**: Background worker updates job metadata status to `running` when it starts executing the adapter
+- [x] **JOB-04**: Background worker writes the agent output to `CLAUDE_PLUGIN_DATA/state/<hash>/results/<job-id>` and updates job status to `completed` on success
+- [x] **JOB-05**: Background worker updates job status to `failed` and writes the error message to job metadata when the adapter exits with an error
+- [x] **JOB-06**: Cancel operation writes a cancel sentinel file to `CLAUDE_PLUGIN_DATA/state/<hash>/cancel/<job-id>` and the background worker polls for it and terminates when detected
 - [ ] **JOB-07**: Job-id is a unique identifier (UUID or similar) generated at dispatch time and returned to the user immediately in background mode
 
 ### Delegation Subagent
@@ -80,7 +80,7 @@
 - [x] **ERR-01**: All six commands return a non-zero exit code and a human-readable error message when `agents.json` is missing
 - [x] **ERR-02**: All six commands return a non-zero exit code and a human-readable error message when `agents.json` fails schema validation
 - [x] **ERR-03**: Companion script catches and logs adapter process errors (non-zero exit, crash, timeout) without crashing the companion process itself
-- [ ] **ERR-04**: Background worker writes the error details to job metadata when the adapter fails so `/agents:status` and `/agents:result` can surface the failure cause
+- [x] **ERR-04**: Background worker writes the error details to job metadata when the adapter fails so `/agents:status` and `/agents:result` can surface the failure cause
 - [x] **ERR-05**: Companion script returns a descriptive error when `CLAUDE_PLUGIN_DATA` is not set or is not writable
 
 ### Logging
@@ -185,12 +185,12 @@ Which phases cover which requirements. Populated during roadmap creation.
 | SESS-02 | Phase 2 | Complete |
 | SESS-03 | Phase 2 | Complete |
 | SESS-04 | Phase 2 | Complete |
-| JOB-01 | Phase 3 | Pending |
-| JOB-02 | Phase 3 | Pending |
-| JOB-03 | Phase 3 | Pending |
-| JOB-04 | Phase 3 | Pending |
-| JOB-05 | Phase 3 | Pending |
-| JOB-06 | Phase 3 | Pending |
+| JOB-01 | Phase 3 | Complete |
+| JOB-02 | Phase 3 | Complete |
+| JOB-03 | Phase 3 | Complete |
+| JOB-04 | Phase 3 | Complete |
+| JOB-05 | Phase 3 | Complete |
+| JOB-06 | Phase 3 | Complete |
 | JOB-07 | Phase 3 | Pending |
 | DELEG-01 | Phase 3 | Pending |
 | DELEG-02 | Phase 3 | Pending |
@@ -198,7 +198,7 @@ Which phases cover which requirements. Populated during roadmap creation.
 | ERR-01 | Phase 3 | Complete |
 | ERR-02 | Phase 3 | Complete |
 | ERR-03 | Phase 2 | Complete |
-| ERR-04 | Phase 3 | Pending |
+| ERR-04 | Phase 3 | Complete |
 | ERR-05 | Phase 2 | Complete |
 | LOG-01 | Phase 2 | Complete |
 | LOG-02 | Phase 2 | Complete |
