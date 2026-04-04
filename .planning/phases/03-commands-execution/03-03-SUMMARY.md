@@ -112,6 +112,16 @@ None - no external service configuration required.
 - Plan 03-05 (integration tests) can spawn worker process against fake CLI shims and assert on job metadata files
 - All JOB-01 through JOB-06 and ERR-04 requirements satisfied
 
+## Self-Check: PASSED
+
+Files verified:
+- packages/plugin/src/companion/worker.ts — FOUND
+- packages/plugin/scripts/agents-worker.cjs — FOUND
+
+Commits verified:
+- 03a25fc — FOUND (feat: background job worker with cancel polling)
+- ea4311e — FOUND (docs: complete background job worker plan)
+
 ---
 *Phase: 03-commands-execution*
 *Completed: 2026-04-04*
