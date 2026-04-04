@@ -39,20 +39,14 @@ jobs:
 
       - name: Paperclip-free check (ADPT-01)
         run: |
-          cd packages/runtime
-          PACK_OUTPUT=$(pnpm pack --dry-run 2>&1)
-          echo "$PACK_OUTPUT"
-          if echo "$PACK_OUTPUT" | grep -i "paperclip"; then
-            echo "ERROR: paperclip reference found in runtime pack output"
-            exit 1
-          fi
-          echo "OK: runtime package has no paperclip references"
-
-          cd ../plugin
-          PACK_OUTPUT=$(pnpm pack --dry-run 2>&1)
-          echo "$PACK_OUTPUT"
-          if echo "$PACK_OUTPUT" | grep -i "paperclip"; then
-            echo "ERROR: paperclip reference found in plugin pack output"
-            exit 1
-          fi
-          echo "OK: plugin package has no paperclip references"
+          for pkg in packages/runtime packages/plugin; do
+            echo "Checking $pkg..."
+            TARBALL=$(cd "$pkg" && pnpm pack --pack-destination /tmp 2>&1 | tail -1)
+            tar tzf "$TARBALL" > /tmp/pack-files.txt
+            if grep -i "paperclip" /tmp/pack-files.txt; then
+              echo "ERROR: paperclip reference found in $pkg pack output"
+              exit 1
+            fi
+            rm -f "$TARBALL"
+            echo "OK: $pkg has no paperclip references"
+          done
