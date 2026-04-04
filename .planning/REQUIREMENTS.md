@@ -20,16 +20,16 @@
 - [x] **CONF-02**: Companion script validates `agents.json` against JSON Schema at startup and exits with a human-readable error message that includes the failing field path when validation fails
 - [x] **CONF-03**: `adapterType` field in `agents.json` is restricted to exactly: `claude_local`, `codex_local`, `cursor`, `gemini_local`, `opencode_local`, `pi_local`
 - [x] **CONF-04**: Companion script locates the workspace root by walking up from the current directory to find the nearest `.claude/agents.json`
-- [ ] **CONF-05**: `/agents:setup` wizard writes a valid `agents.json` to `.claude/agents.json` and validates the written file before confirming success
-- [ ] **CONF-06**: `/agents:setup` prompts for `id`, `label`, `description`, `adapterType`, and adapter-specific `adapterConfig` fields for each agent added
+- [x] **CONF-05**: `/agents:setup` wizard writes a valid `agents.json` to `.claude/agents.json` and validates the written file before confirming success
+- [x] **CONF-06**: `/agents:setup` prompts for `id`, `label`, `description`, `adapterType`, and adapter-specific `adapterConfig` fields for each agent added
 
 ### Commands
 
-- [ ] **CMD-01**: `/agents:list` reads `.claude/agents.json` and displays all agents in a table with columns: id, label, description, adapterType
-- [ ] **CMD-02**: `/agents:list` returns a clear error message when `.claude/agents.json` does not exist
+- [x] **CMD-01**: `/agents:list` reads `.claude/agents.json` and displays all agents in a table with columns: id, label, description, adapterType
+- [x] **CMD-02**: `/agents:list` returns a clear error message when `.claude/agents.json` does not exist
 - [ ] **CMD-03**: `/agents:task --agent <id> <prompt>` runs the specified agent in foreground mode and returns its output inline in the Claude session
 - [ ] **CMD-04**: `/agents:task --agent <id> --background <prompt>` spawns a detached background worker, returns a job-id immediately, and does not block the Claude session
-- [ ] **CMD-05**: `/agents:task` returns a clear error when the specified `--agent <id>` is not found in `agents.json`
+- [x] **CMD-05**: `/agents:task` returns a clear error when the specified `--agent <id>` is not found in `agents.json`
 - [ ] **CMD-06**: `/agents:task --agent <id> --fresh <prompt>` discards any existing session for `(workspace, agent-id)` and starts a new one
 - [ ] **CMD-07**: `/agents:task --agent <id> --resume <prompt>` reuses the existing session for `(workspace, agent-id)` if one exists
 - [ ] **CMD-08**: `/agents:status <job-id>` reads job metadata from disk and returns one of: `pending`, `running`, `completed`, `failed`, `cancelled`
@@ -77,8 +77,8 @@
 
 ### Error Handling
 
-- [ ] **ERR-01**: All six commands return a non-zero exit code and a human-readable error message when `agents.json` is missing
-- [ ] **ERR-02**: All six commands return a non-zero exit code and a human-readable error message when `agents.json` fails schema validation
+- [x] **ERR-01**: All six commands return a non-zero exit code and a human-readable error message when `agents.json` is missing
+- [x] **ERR-02**: All six commands return a non-zero exit code and a human-readable error message when `agents.json` fails schema validation
 - [x] **ERR-03**: Companion script catches and logs adapter process errors (non-zero exit, crash, timeout) without crashing the companion process itself
 - [ ] **ERR-04**: Background worker writes the error details to job metadata when the adapter fails so `/agents:status` and `/agents:result` can surface the failure cause
 - [x] **ERR-05**: Companion script returns a descriptive error when `CLAUDE_PLUGIN_DATA` is not set or is not writable
@@ -93,7 +93,7 @@
 
 - [x] **TEST-01**: Unit tests cover all runtime helper functions (child-process runner, session codec, JSON/JSONL parser, timeout handler) without requiring real CLI binaries
 - [x] **TEST-02**: Each of the six adapters has a smoke test that uses a fake CLI shim and verifies the adapter correctly invokes the CLI, parses its output, and encodes/decodes a session
-- [ ] **TEST-03**: Companion integration tests cover config load+validate, foreground task execution, background job dispatch, status poll, result retrieval, and cancellation — all using fake CLIs
+- [x] **TEST-03**: Companion integration tests cover config load+validate, foreground task execution, background job dispatch, status poll, result retrieval, and cancellation — all using fake CLIs
 - [x] **TEST-04**: Plugin layout test verifies all required files (`marketplace.json`, `plugin.json`, command files, agent file, companion script) are present at the correct paths
 - [ ] **TEST-05**: All tests pass in CI without any real AI CLI binaries installed
 
@@ -156,13 +156,13 @@ Which phases cover which requirements. Populated during roadmap creation.
 | CONF-02 | Phase 2 | Complete |
 | CONF-03 | Phase 2 | Complete |
 | CONF-04 | Phase 2 | Complete |
-| CONF-05 | Phase 3 | Pending |
-| CONF-06 | Phase 3 | Pending |
-| CMD-01 | Phase 3 | Pending |
-| CMD-02 | Phase 3 | Pending |
+| CONF-05 | Phase 3 | Complete |
+| CONF-06 | Phase 3 | Complete |
+| CMD-01 | Phase 3 | Complete |
+| CMD-02 | Phase 3 | Complete |
 | CMD-03 | Phase 3 | Pending |
 | CMD-04 | Phase 3 | Pending |
-| CMD-05 | Phase 3 | Pending |
+| CMD-05 | Phase 3 | Complete |
 | CMD-06 | Phase 3 | Pending |
 | CMD-07 | Phase 3 | Pending |
 | CMD-08 | Phase 3 | Pending |
@@ -195,8 +195,8 @@ Which phases cover which requirements. Populated during roadmap creation.
 | DELEG-01 | Phase 3 | Pending |
 | DELEG-02 | Phase 3 | Pending |
 | DELEG-03 | Phase 3 | Pending |
-| ERR-01 | Phase 3 | Pending |
-| ERR-02 | Phase 3 | Pending |
+| ERR-01 | Phase 3 | Complete |
+| ERR-02 | Phase 3 | Complete |
 | ERR-03 | Phase 2 | Complete |
 | ERR-04 | Phase 3 | Pending |
 | ERR-05 | Phase 2 | Complete |
@@ -205,7 +205,7 @@ Which phases cover which requirements. Populated during roadmap creation.
 | LOG-03 | Phase 2 | Complete |
 | TEST-01 | Phase 2 | Complete |
 | TEST-02 | Phase 2 | Complete |
-| TEST-03 | Phase 3 | Pending |
+| TEST-03 | Phase 3 | Complete |
 | TEST-04 | Phase 1 | Complete |
 | TEST-05 | Phase 3 | Pending |
 

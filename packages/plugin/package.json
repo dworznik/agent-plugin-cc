@@ -10,5 +10,8 @@
   "devDependencies": {
     "tsup": "^8.5.1",
     "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "@agent-plugin-cc/runtime": "workspace:*"
   }
 }
