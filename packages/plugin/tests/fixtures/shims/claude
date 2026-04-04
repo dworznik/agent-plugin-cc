@@ -1,0 +1,11 @@
+#!/bin/sh
+if [ "$__ADAPTER_TEST_MODE" = "success" ]; then
+  sleep "${__ADAPTER_TEST_DELAY:-0}"
+  echo '{"type":"result","subtype":"success","result":"test-output-from-shim","session_id":"test-session-abc"}'
+  exit 0
+elif [ "$__ADAPTER_TEST_MODE" = "error" ]; then
+  echo "adapter error" >&2
+  exit 1
+fi
+echo "unknown mode" >&2
+exit 1
