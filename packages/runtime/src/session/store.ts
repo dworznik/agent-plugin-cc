@@ -13,8 +13,8 @@ export function loadSession(
 ): SessionData | null {
   const path = getSessionPath(pluginDataDir, workspaceRoot, agentId);
   if (!existsSync(path)) return null;
+  const raw = readFileSync(path, 'utf-8');
   try {
-    const raw = readFileSync(path, 'utf-8');
     return JSON.parse(raw) as SessionData;
   } catch {
     warn?.(`Corrupt session file at ${path}, deleting and starting fresh`);
