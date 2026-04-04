@@ -4268,19 +4268,19 @@ var require_loader = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.PluginDataError = exports2.ConfigValidationError = exports2.ConfigNotFoundError = void 0;
     exports2.findConfigPath = findConfigPath;
-    exports2.loadConfig = loadConfig2;
-    exports2.validatePluginDataDir = validatePluginDataDir;
+    exports2.loadConfig = loadConfig6;
+    exports2.validatePluginDataDir = validatePluginDataDir5;
     var node_fs_1 = require("fs");
     var node_path_1 = require("path");
     var schema_js_1 = require_schema();
-    var ConfigNotFoundError2 = class extends Error {
+    var ConfigNotFoundError6 = class extends Error {
       constructor(startDir) {
         super(`agents.json not found: walked up from ${startDir} to filesystem root without finding .claude/agents.json`);
         this.name = "ConfigNotFoundError";
       }
     };
-    exports2.ConfigNotFoundError = ConfigNotFoundError2;
-    var ConfigValidationError2 = class extends Error {
+    exports2.ConfigNotFoundError = ConfigNotFoundError6;
+    var ConfigValidationError6 = class extends Error {
       fieldPath;
       constructor(fieldPath, message) {
         super(`agents.json invalid at '${fieldPath}': ${message}`);
@@ -4288,7 +4288,7 @@ var require_loader = __commonJS({
         this.fieldPath = fieldPath;
       }
     };
-    exports2.ConfigValidationError = ConfigValidationError2;
+    exports2.ConfigValidationError = ConfigValidationError6;
     var PluginDataError = class extends Error {
       constructor(reason) {
         super(`CLAUDE_PLUGIN_DATA ${reason}`);
@@ -4304,27 +4304,27 @@ var require_loader = __commonJS({
           return candidate;
         const parent = (0, node_path_1.dirname)(dir);
         if (parent === dir)
-          throw new ConfigNotFoundError2(startDir);
+          throw new ConfigNotFoundError6(startDir);
         dir = parent;
       }
     }
-    function loadConfig2(cwd) {
+    function loadConfig6(cwd) {
       const configPath = findConfigPath(cwd);
       let raw;
       try {
         raw = JSON.parse((0, node_fs_1.readFileSync)(configPath, "utf-8"));
       } catch {
-        throw new ConfigValidationError2("(root)", "File is not valid JSON");
+        throw new ConfigValidationError6("(root)", "File is not valid JSON");
       }
       const result = schema_js_1.AgentsConfigSchema.safeParse(raw);
       if (!result.success) {
         const issue = result.error.errors[0];
         const fieldPath = issue.path.join(".") || "(root)";
-        throw new ConfigValidationError2(fieldPath, issue.message);
+        throw new ConfigValidationError6(fieldPath, issue.message);
       }
       return result.data;
     }
-    function validatePluginDataDir() {
+    function validatePluginDataDir5() {
       const dir = process.env["CLAUDE_PLUGIN_DATA"];
       if (!dir) {
         throw new PluginDataError("environment variable is not set. Claude Code must set CLAUDE_PLUGIN_DATA before invoking the companion.");
@@ -4496,7 +4496,7 @@ var require_claude_local = __commonJS({
     var runner_js_1 = require_runner();
     var parse_js_1 = require_parse();
     var base_js_1 = require_base();
-    var ClaudeLocalAdapter = class extends base_js_1.BaseAdapter {
+    var ClaudeLocalAdapter2 = class extends base_js_1.BaseAdapter {
       binaryName = "claude";
       adapterType = "claude_local";
       buildArgs(prompt, sessionId) {
@@ -4525,7 +4525,7 @@ var require_claude_local = __commonJS({
         return raw;
       }
     };
-    exports2.ClaudeLocalAdapter = ClaudeLocalAdapter;
+    exports2.ClaudeLocalAdapter = ClaudeLocalAdapter2;
   }
 });
 
@@ -4538,7 +4538,7 @@ var require_codex_local = __commonJS({
     var runner_js_1 = require_runner();
     var parse_js_1 = require_parse();
     var base_js_1 = require_base();
-    var CodexLocalAdapter = class extends base_js_1.BaseAdapter {
+    var CodexLocalAdapter2 = class extends base_js_1.BaseAdapter {
       binaryName = "codex";
       adapterType = "codex_local";
       buildArgs(prompt, sessionId) {
@@ -4572,7 +4572,7 @@ var require_codex_local = __commonJS({
         return raw;
       }
     };
-    exports2.CodexLocalAdapter = CodexLocalAdapter;
+    exports2.CodexLocalAdapter = CodexLocalAdapter2;
   }
 });
 
@@ -4585,7 +4585,7 @@ var require_cursor = __commonJS({
     var runner_js_1 = require_runner();
     var parse_js_1 = require_parse();
     var base_js_1 = require_base();
-    var CursorAdapter = class extends base_js_1.BaseAdapter {
+    var CursorAdapter2 = class extends base_js_1.BaseAdapter {
       binaryName = "cursor";
       adapterType = "cursor";
       buildArgs(prompt, sessionId) {
@@ -4619,7 +4619,7 @@ var require_cursor = __commonJS({
         return raw;
       }
     };
-    exports2.CursorAdapter = CursorAdapter;
+    exports2.CursorAdapter = CursorAdapter2;
   }
 });
 
@@ -4632,7 +4632,7 @@ var require_gemini_local = __commonJS({
     var runner_js_1 = require_runner();
     var parse_js_1 = require_parse();
     var base_js_1 = require_base();
-    var GeminiLocalAdapter = class extends base_js_1.BaseAdapter {
+    var GeminiLocalAdapter2 = class extends base_js_1.BaseAdapter {
       binaryName = "gemini";
       adapterType = "gemini_local";
       buildArgs(prompt, sessionId) {
@@ -4663,7 +4663,7 @@ var require_gemini_local = __commonJS({
         return raw;
       }
     };
-    exports2.GeminiLocalAdapter = GeminiLocalAdapter;
+    exports2.GeminiLocalAdapter = GeminiLocalAdapter2;
   }
 });
 
@@ -4676,7 +4676,7 @@ var require_opencode_local = __commonJS({
     var runner_js_1 = require_runner();
     var parse_js_1 = require_parse();
     var base_js_1 = require_base();
-    var OpencodeLocalAdapter = class extends base_js_1.BaseAdapter {
+    var OpencodeLocalAdapter2 = class extends base_js_1.BaseAdapter {
       binaryName = "opencode";
       adapterType = "opencode_local";
       buildArgs(prompt, sessionId) {
@@ -4707,7 +4707,7 @@ var require_opencode_local = __commonJS({
         return raw;
       }
     };
-    exports2.OpencodeLocalAdapter = OpencodeLocalAdapter;
+    exports2.OpencodeLocalAdapter = OpencodeLocalAdapter2;
   }
 });
 
@@ -4720,7 +4720,7 @@ var require_pi_local = __commonJS({
     var runner_js_1 = require_runner();
     var parse_js_1 = require_parse();
     var base_js_1 = require_base();
-    var PiLocalAdapter = class extends base_js_1.BaseAdapter {
+    var PiLocalAdapter2 = class extends base_js_1.BaseAdapter {
       binaryName = "pi";
       adapterType = "pi_local";
       buildArgs(prompt, sessionId) {
@@ -4753,7 +4753,7 @@ var require_pi_local = __commonJS({
         return raw;
       }
     };
-    exports2.PiLocalAdapter = PiLocalAdapter;
+    exports2.PiLocalAdapter = PiLocalAdapter2;
   }
 });
 
@@ -4858,9 +4858,9 @@ var require_paths = __commonJS({
       return mod && mod.__esModule ? mod : { "default": mod };
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.getStatePath = getStatePath;
+    exports2.getStatePath = getStatePath5;
     exports2.getSessionPath = getSessionPath;
-    exports2.getLogPath = getLogPath;
+    exports2.getLogPath = getLogPath2;
     var node_path_1 = require("path");
     var sanitize_filename_1 = __importDefault(require_sanitize_filename());
     var hash_js_1 = require_hash();
@@ -4871,14 +4871,14 @@ var require_paths = __commonJS({
       }
       return clean;
     }
-    function getStatePath(pluginDataDir, workspaceRoot) {
+    function getStatePath5(pluginDataDir, workspaceRoot) {
       return (0, node_path_1.join)(pluginDataDir, "state", (0, hash_js_1.workspaceHash)(workspaceRoot));
     }
     function getSessionPath(pluginDataDir, workspaceRoot, agentId) {
-      return (0, node_path_1.join)(getStatePath(pluginDataDir, workspaceRoot), "sessions", `${safeId(agentId, "agentId")}.json`);
+      return (0, node_path_1.join)(getStatePath5(pluginDataDir, workspaceRoot), "sessions", `${safeId(agentId, "agentId")}.json`);
     }
-    function getLogPath(pluginDataDir, workspaceRoot, jobId) {
-      return (0, node_path_1.join)(getStatePath(pluginDataDir, workspaceRoot), "logs", `${safeId(jobId, "jobId")}.log`);
+    function getLogPath2(pluginDataDir, workspaceRoot, jobId) {
+      return (0, node_path_1.join)(getStatePath5(pluginDataDir, workspaceRoot), "logs", `${safeId(jobId, "jobId")}.log`);
     }
   }
 });
@@ -4890,7 +4890,7 @@ var require_store = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.loadSession = loadSession;
     exports2.saveSession = saveSession;
-    exports2.deleteSession = deleteSession;
+    exports2.deleteSession = deleteSession2;
     var node_fs_1 = require("fs");
     var node_path_1 = require("path");
     var paths_js_1 = require_paths();
@@ -4915,7 +4915,7 @@ var require_store = __commonJS({
       (0, node_fs_1.mkdirSync)((0, node_path_1.dirname)(path), { recursive: true });
       (0, node_fs_1.writeFileSync)(path, JSON.stringify(session, null, 2), "utf-8");
     }
-    function deleteSession(pluginDataDir, workspaceRoot, agentId) {
+    function deleteSession2(pluginDataDir, workspaceRoot, agentId) {
       const path = (0, paths_js_1.getSessionPath)(pluginDataDir, workspaceRoot, agentId);
       if ((0, node_fs_1.existsSync)(path))
         (0, node_fs_1.unlinkSync)(path);
@@ -4953,10 +4953,10 @@ var require_logger = __commonJS({
   "../runtime/dist/logging/logger.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.createLogger = createLogger;
+    exports2.createLogger = createLogger2;
     var node_fs_1 = require("fs");
     var node_path_1 = require("path");
-    function createLogger(jobId, logPath, emitLog) {
+    function createLogger2(jobId, logPath, emitLog) {
       (0, node_fs_1.mkdirSync)((0, node_path_1.dirname)(logPath), { recursive: true });
       function write(level, message, durationMs) {
         const entry = {
@@ -5155,27 +5155,288 @@ async function listCommand(_args) {
 }
 
 // src/companion/commands/task.ts
-async function taskCommand(_args) {
-  console.log(JSON.stringify({ error: "Not implemented yet" }));
-  process.exit(1);
+var import_node_child_process = require("child_process");
+var import_node_path3 = require("path");
+var import_node_crypto = require("crypto");
+var import_runtime3 = __toESM(require_dist());
+
+// src/companion/job.ts
+var import_node_fs2 = require("fs");
+var import_node_path2 = require("path");
+function getJobPath(statePath, jobId) {
+  return (0, import_node_path2.join)(statePath, "jobs", `${jobId}.json`);
+}
+function getResultPath(statePath, jobId) {
+  return (0, import_node_path2.join)(statePath, "results", jobId);
+}
+function getCancelPath(statePath, jobId) {
+  return (0, import_node_path2.join)(statePath, "cancel", jobId);
+}
+function readJob(statePath, jobId) {
+  const p = getJobPath(statePath, jobId);
+  if (!(0, import_node_fs2.existsSync)(p)) return null;
+  return JSON.parse((0, import_node_fs2.readFileSync)(p, "utf-8"));
+}
+function writeJob(statePath, meta) {
+  const p = getJobPath(statePath, meta.jobId);
+  (0, import_node_fs2.mkdirSync)((0, import_node_path2.dirname)(p), { recursive: true });
+  (0, import_node_fs2.writeFileSync)(p, JSON.stringify(meta, null, 2), "utf-8");
+}
+function updateJob(statePath, jobId, update) {
+  const existing = readJob(statePath, jobId);
+  if (!existing) throw new Error(`Job not found: ${jobId}`);
+  writeJob(statePath, { ...existing, ...update });
+}
+
+// src/companion/commands/task.ts
+function createAdapter(agent) {
+  switch (agent.adapterType) {
+    case "claude_local":
+      return new import_runtime3.ClaudeLocalAdapter();
+    case "codex_local":
+      return new import_runtime3.CodexLocalAdapter();
+    case "cursor":
+      return new import_runtime3.CursorAdapter();
+    case "gemini_local":
+      return new import_runtime3.GeminiLocalAdapter();
+    case "opencode_local":
+      return new import_runtime3.OpencodeLocalAdapter();
+    case "pi_local":
+      return new import_runtime3.PiLocalAdapter();
+    default: {
+      const _ = agent.adapterType;
+      throw new Error(`Unknown adapter type: ${String(_)}`);
+    }
+  }
+}
+async function taskCommand(args) {
+  let config;
+  try {
+    config = (0, import_runtime3.loadConfig)(process.cwd());
+  } catch (err) {
+    if (err instanceof import_runtime3.ConfigNotFoundError) {
+      console.log(JSON.stringify({ error: "No agents.json found. Run /agents:setup to configure agents." }));
+      process.exit(1);
+    }
+    if (err instanceof import_runtime3.ConfigValidationError) {
+      console.log(JSON.stringify({ error: err.message }));
+      process.exit(1);
+    }
+    throw err;
+  }
+  let agentId = null;
+  let background = false;
+  let fresh = false;
+  let resume = false;
+  const promptParts = [];
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (arg === "--agent") {
+      agentId = args[++i] ?? null;
+    } else if (arg === "--background") {
+      background = true;
+    } else if (arg === "--fresh") {
+      fresh = true;
+    } else if (arg === "--resume") {
+      resume = true;
+    } else {
+      promptParts.push(arg);
+    }
+  }
+  if (!agentId) {
+    console.log(JSON.stringify({ error: "Missing required flag: --agent <id>" }));
+    process.exit(1);
+  }
+  const prompt = promptParts.join(" ");
+  const agent = config.agents.find((a) => a.id === agentId);
+  if (!agent) {
+    const available = config.agents.map((a) => a.id).join(", ");
+    console.log(JSON.stringify({ error: `Agent not found: ${agentId}. Available: ${available}` }));
+    process.exit(1);
+  }
+  const cwd = process.cwd();
+  const pluginDataDir = (0, import_runtime3.validatePluginDataDir)();
+  const statePath = (0, import_runtime3.getStatePath)(pluginDataDir, cwd);
+  if (background) {
+    const jobId2 = (0, import_node_crypto.randomUUID)();
+    writeJob(statePath, {
+      jobId: jobId2,
+      agentId: agent.id,
+      status: "pending",
+      startTime: (/* @__PURE__ */ new Date()).toISOString(),
+      pid: null
+    });
+    const worker = (0, import_node_child_process.spawn)(
+      process.execPath,
+      [(0, import_node_path3.join)(__dirname, "agents-worker.cjs"), jobId2, agent.id, prompt, JSON.stringify(agent)],
+      {
+        detached: true,
+        stdio: "ignore",
+        env: { ...process.env, CLAUDE_PLUGIN_DATA: pluginDataDir }
+      }
+    );
+    worker.unref();
+    console.log(JSON.stringify({ jobId: jobId2, status: "pending" }));
+    return;
+  }
+  if (fresh) {
+    (0, import_runtime3.deleteSession)(pluginDataDir, cwd, agent.id);
+  }
+  let sessionId;
+  if (resume) {
+    const existing = import_runtime3.defaultHooks.loadSession(cwd, agent.id);
+    if (existing) {
+      sessionId = existing.sessionId;
+    }
+  }
+  const jobId = (0, import_node_crypto.randomUUID)();
+  const logPath = (0, import_runtime3.getLogPath)(pluginDataDir, cwd, jobId);
+  const logger = (0, import_runtime3.createLogger)(jobId, logPath, import_runtime3.defaultHooks.emitLog);
+  const adapter = createAdapter(agent);
+  let result;
+  try {
+    result = await adapter.execute(prompt, {
+      sessionId,
+      cwd,
+      env: import_runtime3.defaultHooks.buildAgentEnv(agent.id, process.env)
+    });
+  } catch (err) {
+    logger.error(err.message ?? String(err));
+    console.log(JSON.stringify({ error: err.message ?? String(err) }));
+    process.exit(1);
+  }
+  if (result.sessionId) {
+    import_runtime3.defaultHooks.saveSession(cwd, agent.id, {
+      agentId: agent.id,
+      adapterType: agent.adapterType,
+      sessionId: result.sessionId,
+      createdAt: (/* @__PURE__ */ new Date()).toISOString(),
+      updatedAt: (/* @__PURE__ */ new Date()).toISOString()
+    });
+  }
+  console.log(JSON.stringify({ output: result.output, sessionId: result.sessionId ?? null }));
 }
 
 // src/companion/commands/status.ts
-async function statusCommand(_args) {
-  console.log(JSON.stringify({ error: "Not implemented yet" }));
-  process.exit(1);
+var import_runtime4 = __toESM(require_dist());
+async function statusCommand(args) {
+  try {
+    (0, import_runtime4.loadConfig)(process.cwd());
+  } catch (err) {
+    if (err instanceof import_runtime4.ConfigNotFoundError) {
+      console.log(JSON.stringify({ error: "No agents.json found. Run /agents:setup to configure agents." }));
+      process.exit(1);
+    }
+    if (err instanceof import_runtime4.ConfigValidationError) {
+      console.log(JSON.stringify({ error: err.message }));
+      process.exit(1);
+    }
+    throw err;
+  }
+  const jobId = args[0];
+  if (!jobId) {
+    console.log(JSON.stringify({ error: "Usage: status <job-id>" }));
+    process.exit(1);
+  }
+  const pluginDataDir = (0, import_runtime4.validatePluginDataDir)();
+  const statePath = (0, import_runtime4.getStatePath)(pluginDataDir, process.cwd());
+  const job = readJob(statePath, jobId);
+  if (!job) {
+    console.log(JSON.stringify({ error: `Job not found: ${jobId}` }));
+    process.exit(1);
+  }
+  console.log(JSON.stringify(job));
 }
 
 // src/companion/commands/result.ts
-async function resultCommand(_args) {
-  console.log(JSON.stringify({ error: "Not implemented yet" }));
-  process.exit(1);
+var import_node_fs3 = require("fs");
+var import_runtime5 = __toESM(require_dist());
+async function resultCommand(args) {
+  try {
+    (0, import_runtime5.loadConfig)(process.cwd());
+  } catch (err) {
+    if (err instanceof import_runtime5.ConfigNotFoundError) {
+      console.log(JSON.stringify({ error: "No agents.json found. Run /agents:setup to configure agents." }));
+      process.exit(1);
+    }
+    if (err instanceof import_runtime5.ConfigValidationError) {
+      console.log(JSON.stringify({ error: err.message }));
+      process.exit(1);
+    }
+    throw err;
+  }
+  const jobId = args[0];
+  if (!jobId) {
+    console.log(JSON.stringify({ error: "Usage: result <job-id>" }));
+    process.exit(1);
+  }
+  const pluginDataDir = (0, import_runtime5.validatePluginDataDir)();
+  const statePath = (0, import_runtime5.getStatePath)(pluginDataDir, process.cwd());
+  const job = readJob(statePath, jobId);
+  if (!job) {
+    console.log(JSON.stringify({ error: `Job not found: ${jobId}` }));
+    process.exit(1);
+  }
+  if (job.status !== "completed") {
+    if (job.status === "failed") {
+      console.log(JSON.stringify({ error: `Job failed: ${job.error ?? "unknown error"}` }));
+    } else {
+      console.log(JSON.stringify({ error: `Job not completed. Current status: ${job.status}` }));
+    }
+    process.exit(1);
+  }
+  const resultPath = getResultPath(statePath, jobId);
+  if (!(0, import_node_fs3.existsSync)(resultPath)) {
+    console.log(JSON.stringify({ error: `Result file missing for job: ${jobId}` }));
+    process.exit(1);
+  }
+  const output = (0, import_node_fs3.readFileSync)(resultPath, "utf-8");
+  console.log(JSON.stringify({ jobId, output }));
 }
 
 // src/companion/commands/cancel.ts
-async function cancelCommand(_args) {
-  console.log(JSON.stringify({ error: "Not implemented yet" }));
-  process.exit(1);
+var import_node_fs4 = require("fs");
+var import_node_path4 = require("path");
+var import_runtime6 = __toESM(require_dist());
+async function cancelCommand(args) {
+  try {
+    (0, import_runtime6.loadConfig)(process.cwd());
+  } catch (err) {
+    if (err instanceof import_runtime6.ConfigNotFoundError) {
+      console.log(JSON.stringify({ error: "No agents.json found. Run /agents:setup to configure agents." }));
+      process.exit(1);
+    }
+    if (err instanceof import_runtime6.ConfigValidationError) {
+      console.log(JSON.stringify({ error: err.message }));
+      process.exit(1);
+    }
+    throw err;
+  }
+  const jobId = args[0];
+  if (!jobId) {
+    console.log(JSON.stringify({ error: "Usage: cancel <job-id>" }));
+    process.exit(1);
+  }
+  const pluginDataDir = (0, import_runtime6.validatePluginDataDir)();
+  const statePath = (0, import_runtime6.getStatePath)(pluginDataDir, process.cwd());
+  const job = readJob(statePath, jobId);
+  if (!job) {
+    console.log(JSON.stringify({ error: `Job not found: ${jobId}` }));
+    process.exit(1);
+  }
+  if (job.status !== "running" && job.status !== "pending") {
+    console.log(
+      JSON.stringify({
+        error: `Cannot cancel job in '${job.status}' state. Only 'running' or 'pending' jobs can be cancelled.`
+      })
+    );
+    process.exit(1);
+  }
+  const cancelPath = getCancelPath(statePath, jobId);
+  (0, import_node_fs4.mkdirSync)((0, import_node_path4.dirname)(cancelPath), { recursive: true });
+  (0, import_node_fs4.writeFileSync)(cancelPath, "", "utf-8");
+  updateJob(statePath, jobId, { status: "cancelled", endTime: (/* @__PURE__ */ new Date()).toISOString() });
+  console.log(JSON.stringify({ jobId, status: "cancelled" }));
 }
 
 // src/companion/index.ts

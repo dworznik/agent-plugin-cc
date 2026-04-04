@@ -1,4 +1,4 @@
-import { fork } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import {
@@ -108,10 +108,11 @@ export async function taskCommand(args: string[]): Promise<void> {
       pid: null,
     });
 
-    // Fork detached worker
-    const worker = fork(
-      join(__dirname, 'agents-worker.cjs'),
-      [jobId, agent.id, prompt, JSON.stringify(agent)],
+    // Spawn detached worker (spawn avoids IPC channel that fork creates,
+    // which would prevent the parent from exiting while child is running)
+    const worker = spawn(
+      process.execPath,
+      [join(__dirname, 'agents-worker.cjs'), jobId, agent.id, prompt, JSON.stringify(agent)],
       {
         detached: true,
         stdio: 'ignore',
