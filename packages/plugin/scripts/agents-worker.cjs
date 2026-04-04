@@ -5128,16 +5128,39 @@ function updateJob(statePath2, jobId2, update) {
   if (!existing) throw new Error(`Job not found: ${jobId2}`);
   writeJob(statePath2, { ...existing, ...update });
 }
+function casUpdateJob(statePath2, jobId2, expectedStatuses, update) {
+  const existing = readJob(statePath2, jobId2);
+  if (!existing) throw new Error(`Job not found: ${jobId2}`);
+  if (!expectedStatuses.includes(existing.status)) return false;
+  writeJob(statePath2, { ...existing, ...update });
+  return true;
+}
 
 // src/companion/worker.ts
 var [jobId, agentId, prompt, agentJson] = process.argv.slice(2);
-var agent = JSON.parse(agentJson);
+if (!jobId || !agentId || !prompt || !agentJson) {
+  process.stderr.write(`worker: missing required args (got ${process.argv.length - 2} of 4)
+`);
+  process.exit(1);
+}
+var agent;
+try {
+  agent = JSON.parse(agentJson);
+} catch {
+  process.stderr.write(`worker: invalid agent JSON: ${agentJson.slice(0, 100)}
+`);
+  process.exit(1);
+}
 var pluginDataDir = (0, import_runtime.validatePluginDataDir)();
 var cwd = process.cwd();
 var statePath = (0, import_runtime.getStatePath)(pluginDataDir, cwd);
 var logPath = (0, import_runtime.getLogPath)(pluginDataDir, cwd, jobId);
 var logger = (0, import_runtime.createLogger)(jobId, logPath, import_runtime.defaultHooks.emitLog);
-updateJob(statePath, jobId, { status: "running", pid: process.pid });
+var started = casUpdateJob(statePath, jobId, ["pending"], { status: "running", pid: process.pid });
+if (!started) {
+  logger.warn("Job no longer pending at worker startup, exiting");
+  process.exit(0);
+}
 logger.info("Worker started");
 function createAdapter(agentCfg) {
   switch (agentCfg.adapterType) {

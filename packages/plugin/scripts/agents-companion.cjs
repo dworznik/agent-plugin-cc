@@ -5182,10 +5182,12 @@ function writeJob(statePath, meta) {
   (0, import_node_fs2.mkdirSync)((0, import_node_path2.dirname)(p), { recursive: true });
   (0, import_node_fs2.writeFileSync)(p, JSON.stringify(meta, null, 2), "utf-8");
 }
-function updateJob(statePath, jobId, update) {
+function casUpdateJob(statePath, jobId, expectedStatuses, update) {
   const existing = readJob(statePath, jobId);
   if (!existing) throw new Error(`Job not found: ${jobId}`);
+  if (!expectedStatuses.includes(existing.status)) return false;
   writeJob(statePath, { ...existing, ...update });
+  return true;
 }
 
 // src/companion/commands/task.ts
@@ -5424,7 +5426,11 @@ async function cancelCommand(args) {
     console.log(JSON.stringify({ error: `Job not found: ${jobId}` }));
     process.exit(1);
   }
-  if (job.status !== "running" && job.status !== "pending") {
+  const updated = casUpdateJob(statePath, jobId, ["pending", "running"], {
+    status: "cancelled",
+    endTime: (/* @__PURE__ */ new Date()).toISOString()
+  });
+  if (!updated) {
     console.log(
       JSON.stringify({
         error: `Cannot cancel job in '${job.status}' state. Only 'running' or 'pending' jobs can be cancelled.`
@@ -5435,7 +5441,6 @@ async function cancelCommand(args) {
   const cancelPath = getCancelPath(statePath, jobId);
   (0, import_node_fs4.mkdirSync)((0, import_node_path4.dirname)(cancelPath), { recursive: true });
   (0, import_node_fs4.writeFileSync)(cancelPath, "", "utf-8");
-  updateJob(statePath, jobId, { status: "cancelled", endTime: (/* @__PURE__ */ new Date()).toISOString() });
   console.log(JSON.stringify({ jobId, status: "cancelled" }));
 }
 

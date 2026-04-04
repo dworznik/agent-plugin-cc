@@ -24,7 +24,8 @@ export function runCompanion(
         timeout: 30_000,
       },
       (error, stdout, stderr) => {
-        const exitCode = error?.code ? Number(error.code) : error ? 1 : 0;
+        const rawCode = error?.code;
+        const exitCode = typeof rawCode === 'number' ? rawCode : error ? 1 : 0;
         let json: Record<string, unknown> | null = null;
         try {
           json = JSON.parse(stdout.trim()) as Record<string, unknown>;

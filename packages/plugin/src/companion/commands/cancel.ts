@@ -7,7 +7,7 @@ import {
   ConfigNotFoundError,
   ConfigValidationError,
 } from '@agent-plugin-cc/runtime';
-import { readJob, updateJob, getCancelPath } from '../job.js';
+import { readJob, casUpdateJob, getCancelPath } from '../job.js';
 
 export async function cancelCommand(args: string[]): Promise<void> {
   // Config guard (ERR-01, ERR-02)
@@ -40,7 +40,13 @@ export async function cancelCommand(args: string[]): Promise<void> {
     process.exit(1);
   }
 
-  if (job.status !== 'running' && job.status !== 'pending') {
+  // Atomic cancel: only transition from pending/running (avoids TOCTOU with worker)
+  const updated = casUpdateJob(statePath, jobId, ['pending', 'running'], {
+    status: 'cancelled',
+    endTime: new Date().toISOString(),
+  });
+
+  if (!updated) {
     // CMD-13: error if not in cancellable state
     console.log(
       JSON.stringify({
@@ -50,13 +56,10 @@ export async function cancelCommand(args: string[]): Promise<void> {
     process.exit(1);
   }
 
-  // Write cancel sentinel (JOB-06)
+  // Write cancel sentinel so worker detects cancellation (JOB-06)
   const cancelPath = getCancelPath(statePath, jobId);
   mkdirSync(dirname(cancelPath), { recursive: true });
   writeFileSync(cancelPath, '', 'utf-8');
-
-  // Update job metadata to cancelled
-  updateJob(statePath, jobId, { status: 'cancelled', endTime: new Date().toISOString() });
 
   console.log(JSON.stringify({ jobId, status: 'cancelled' }));
 }

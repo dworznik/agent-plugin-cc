@@ -15,10 +15,22 @@ import {
   PiLocalAdapter,
 } from '@agent-plugin-cc/runtime';
 import type { AgentConfig, BaseAdapter } from '@agent-plugin-cc/runtime';
-import { updateJob, getResultPath, getCancelPath } from './job.js';
+import { casUpdateJob, updateJob, getResultPath, getCancelPath } from './job.js';
 
 const [jobId, agentId, prompt, agentJson] = process.argv.slice(2);
-const agent: AgentConfig = JSON.parse(agentJson);
+
+if (!jobId || !agentId || !prompt || !agentJson) {
+  process.stderr.write(`worker: missing required args (got ${process.argv.length - 2} of 4)\n`);
+  process.exit(1);
+}
+
+let agent: AgentConfig;
+try {
+  agent = JSON.parse(agentJson);
+} catch {
+  process.stderr.write(`worker: invalid agent JSON: ${agentJson.slice(0, 100)}\n`);
+  process.exit(1);
+}
 
 const pluginDataDir = validatePluginDataDir();
 const cwd = process.cwd();
@@ -26,7 +38,12 @@ const statePath = getStatePath(pluginDataDir, cwd);
 const logPath = getLogPath(pluginDataDir, cwd, jobId);
 const logger = createLogger(jobId, logPath, defaultHooks.emitLog);
 
-updateJob(statePath, jobId, { status: 'running', pid: process.pid });
+// Only transition to running if still pending (avoids overwriting cancelled state)
+const started = casUpdateJob(statePath, jobId, ['pending'], { status: 'running', pid: process.pid });
+if (!started) {
+  logger.warn('Job no longer pending at worker startup, exiting');
+  process.exit(0);
+}
 logger.info('Worker started');
 
 function createAdapter(agentCfg: AgentConfig): BaseAdapter {

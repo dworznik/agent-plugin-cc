@@ -1,4 +1,5 @@
 import { loadConfig, ConfigNotFoundError, ConfigValidationError } from '@agent-plugin-cc/runtime';
+import type { AgentConfig } from '@agent-plugin-cc/runtime';
 
 export async function listCommand(_args: string[]): Promise<void> {
   let config;
@@ -16,7 +17,7 @@ export async function listCommand(_args: string[]): Promise<void> {
     throw err;
   }
 
-  const agents = config.agents.map(a => ({
+  const agents = config.agents.map((a: AgentConfig) => ({
     id: a.id,
     label: a.label,
     description: a.description,

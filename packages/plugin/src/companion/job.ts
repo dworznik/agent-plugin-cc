@@ -42,3 +42,20 @@ export function updateJob(statePath: string, jobId: string, update: Partial<JobM
   if (!existing) throw new Error(`Job not found: ${jobId}`);
   writeJob(statePath, { ...existing, ...update });
 }
+
+/**
+ * Compare-and-set: update job only if current status matches one of expectedStatuses.
+ * Returns true if update was applied, false if status didn't match.
+ */
+export function casUpdateJob(
+  statePath: string,
+  jobId: string,
+  expectedStatuses: JobStatus[],
+  update: Partial<JobMetadata>,
+): boolean {
+  const existing = readJob(statePath, jobId);
+  if (!existing) throw new Error(`Job not found: ${jobId}`);
+  if (!expectedStatuses.includes(existing.status)) return false;
+  writeJob(statePath, { ...existing, ...update });
+  return true;
+}
